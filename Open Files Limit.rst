@@ -53,7 +53,11 @@ Set this higher than user-limit set above.
 
 Add following:
 
-fs.file-max = 2097152
+::
+
+ fs.file-max = 2097152
+
+
 Run:
 
 sysctl -p
