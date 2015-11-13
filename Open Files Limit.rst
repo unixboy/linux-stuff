@@ -60,7 +60,11 @@ Add following:
 
 Run:
 
-sysctl -p
+::
+
+ sysctl -p
+
+
 Above will increase “total” number of files that can remain open system-wide.
 
 Verify New Limits
