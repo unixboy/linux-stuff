@@ -47,7 +47,9 @@ Add following line:
 
 Set this higher than user-limit set above.
 
- Open:: /etc/sysctl.conf 
+::
+ 
+ Open /etc/sysctl.conf 
 
 Add following:
 
@@ -63,7 +65,7 @@ Use following command to see max limit of file descriptors:
 
 ::
 
-  cat /proc/sys/fs/file-max
+ cat /proc/sys/fs/file-max
 
 Hard Limit
 
@@ -76,7 +78,7 @@ Soft Limit
 
 ::
 
-  ulimit -Sn
+ ulimit -Sn
 
 if you are logged in as root:
 
@@ -96,10 +98,10 @@ Find process-id (PID):
 
 ::
 
-  ps aux | grep process-name
-S
+ ps aux | grep process-name
 
-uppose, XXX is PID, then run following commands to check limits:
+
+Suppose, XXX is PID, then run following commands to check limits:
 
 ::
 
