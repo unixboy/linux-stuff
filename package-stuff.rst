@@ -1,3 +1,11 @@
+RPM
+For RPMs you need two command line utilities, rpm2cpio and cpio. Extracting the contents of the RPM package is a one step process:
+
+::
+
+ rpm2cpio mypackage.rpm | cpio -vid
+
+
 DEB
 
 DEB files are ar archives, which contain three files:
