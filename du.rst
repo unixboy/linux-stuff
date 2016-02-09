@@ -29,6 +29,7 @@
  
 ::
 
+ $ pydf  
  Filesystem  Size  Used Avail Use%                 Mounted on
  /dev/sda2  2719G  238G 2342G  8.8 [#............] /         
  /dev/sda1   512M 3456k  509M  0.7 [.............] /boot/efi 
