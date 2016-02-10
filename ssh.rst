@@ -1,11 +1,6 @@
-
-::
-
- ssh -o 'StrictHostKeyChecking no' user@host
+  ssh -o 'StrictHostKeyChecking no' user@host
  
- ::
- 
- sed -i '96d' ~/.ssh/known_hosts
+  sed -i '96d' ~/.ssh/known_hosts
 
 
 
