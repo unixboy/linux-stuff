@@ -52,3 +52,7 @@ repo-remove-old-packages() {
     done
 }
 
+
+
+rm $(repomanage --keep=2 --old /path/to/repo)
+createrepo /path/to/repo
