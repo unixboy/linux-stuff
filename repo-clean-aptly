@@ -1,0 +1,54 @@
+#!/bin/sh
+set -x
+set -e
+repo=_my_repo_
+arch=amd64
+
+dup=false
+for p in `aptly repo search $repo "Architecture ($arch)" | sed "s/_$arch//" | sort -V`
+do
+    pkg=`echo $p | sed 's,_.*,,'`
+    if test "$pkg" = "$pkg_old"
+    then
+        dup=true
+    elif $dup
+    then
+        dup=false
+        # $p_old is latest version of some package with more than one version
+        # Output a search spec for all versions older than this
+        # Version is 2nd field in output of aptly repo search, separated by _
+        v_old=`echo $p_old | cut -d_ -f2`
+        aptly repo remove $repo "$pkg_old (<< $v_old), Architecture ($arch)"
+    fi
+    p_old="$p"
+    pkg_old="$pkg"
+done
+
+
+# Removes old packages in the received repo
+#
+# $1: Repository
+# $2: Architecture
+# $3: Amount of packages to keep
+repo-remove-old-packages() {
+    local repo=$1
+    local arch=$2
+    local keep=$3
+
+    for pkg in $(aptly repo search $repo "Architecture ($arch)" | grep -v "ERROR: no results" | sort -rV); do
+        local pkg_name=$(echo $pkg | cut -d_ -f1)
+        if [ "$pkg_name" != "$cur_pkg" ]; then
+            local count=0
+            local deleted=""
+            local cur_pkg="$pkg_name"
+        fi
+        test -n "$deleted" && continue
+        let count+=1
+        if [ $count -gt $keep ]; then
+            pkg_version=$(echo $pkg | cut -d_ -f2)
+            aptly repo remove $repo "Name ($pkg_name), Version (<= $pkg_version)"
+            deleted='yes'
+        fi
+    done
+}
+
