@@ -1,22 +1,37 @@
 How do I perform a case insensitive search?
 Replace -name option with -iname as follows:
 
-find  / -type d -iname "apt" -ls
+:: 
+ 
+ find  / -type d -iname "apt" -ls
+
 OR
 
-find  / -type d -iname "apt"
+::
+ 
+ find  / -type d -iname "apt"
+
 The patterns ‘apt’ match the directory names ‘apt’, ‘APT’, ‘Apt’, ‘apT’, etc.
 
 How do I find a directory called project.images?
 Type any one of the following command:
 
-find  / -type d -iname "project.images" -ls
+::
+
+ find  / -type d -iname "project.images" -ls
+ 
 OR
 
-find  / -type d -name "project.images" -ls
+::
+
+ find  / -type d -name "project.images" -ls
+
 OR
 
-find  / -type d -name "project.images"
+::
+
+ find  / -type d -name "project.images"
+
 A note about locate command
 To search for a file/dir named exactly project.images (not *project.images*), type:
 
@@ -24,19 +39,29 @@ locate -b '\project.images'
 
 find and delete all file in ./ that haven’t been modified since 90 day:
 
-find ./ -mtime 90 -exec rm -Rf {} \; 
+::
+
+ find ./ -mtime 90 -exec rm -Rf {} \; 
 
 I'd strongly suggest not to use find -L for the task (see below for explanation). Here are some other ways to do this:
 
 If you want to use a "pure find" method, it should rather look like this:
 
-find . -xtype l
+::
+
+ find . -xtype l
+
 (xtype is a test performed on a dereferenced link) This may not be available in all versions of find, though. But there are other options as well;
 
 You can also exec test -e from within the find command:
 
-find . -type l -! -exec test -e {} \; -print
+::
+
+ find . -type l -! -exec test -e {} \; -print
+
 Even some grep trick could be better (i.e. safer) than find -L, but not exactly such as presented in the question (which greps in entire output lines, including filenames):
+
+ ::
 
  find . -type l -exec sh -c "file -b {} | grep -q ^broken" \; -print
 
