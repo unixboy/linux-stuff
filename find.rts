@@ -1,0 +1,30 @@
+How do I perform a case insensitive search?
+Replace -name option with -iname as follows:
+
+find  / -type d -iname "apt" -ls
+OR
+
+find  / -type d -iname "apt"
+The patterns ‘apt’ match the directory names ‘apt’, ‘APT’, ‘Apt’, ‘apT’, etc.
+
+How do I find a directory called project.images?
+Type any one of the following command:
+
+find  / -type d -iname "project.images" -ls
+OR
+
+find  / -type d -name "project.images" -ls
+OR
+
+find  / -type d -name "project.images"
+A note about locate command
+To search for a file/dir named exactly project.images (not *project.images*), type:
+
+locate -b '\project.images'
+
+find and delete all file in ./ that haven’t been modified since 90 day:
+
+find ./ -mtime 90 -exec rm -Rf {} \; 
+
+
+
