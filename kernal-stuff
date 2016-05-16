@@ -1,0 +1,18 @@
+To set the UEK as the default boot kernel:
+
+Display the menu entries that are defined in the configuration file, for example:
+
+# grep '^menuentry' /boot/grub2/grub.cfg
+menuentry 'Oracle Linux Everything, with Linux 3.10.0-123.el7.x86_64' ... {
+menuentry 'Oracle Linux Everything, with Linux 3.8.13-35.2.1.el7uek.x86_64' ... {
+menuentry 'Oracle Linux Everything, with Linux 0-rescue-052e316f566e4a45a3391cff21b4174b' ... {
+In this example for a BIOS-based system, the configuration file is /boot/grub2/grub.cfg, which contains menu entries 0, 1, and 2 that correspond to the RHCK, UEK, and the rescue kernel respectively.
+
+Enter the following commands to make the UEK (entry 1) the default boot kernel:
+
+# grub2-set-default 1
+# grub2-mkconfig -o /boot/grub2/grub.cfg 
+Alternatively, you can specify the value of the text of the entry as a string enclosed in quotes.
+
+# grub2-set-default 'Oracle Linux Everything, with Linux 3.8.13-35.2.1.el7uek.x86_64'
+# grub2-mkconfig -o /boot/grub2/grub.cfg 
