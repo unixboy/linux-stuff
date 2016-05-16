@@ -16,3 +16,16 @@ Alternatively, you can specify the value of the text of the entry as a string en
 
 # grub2-set-default 'Oracle Linux Everything, with Linux 3.8.13-35.2.1.el7uek.x86_64'
 # grub2-mkconfig -o /boot/grub2/grub.cfg 
+
+
+
+Installing Unbreakable Enterprise Kernel 4 on Oracle Linux 7 
+ 
+ 
+[ol7_UEKR4]
+name=Latest Unbreakable Enterprise Kernel Release 4 for Oracle Linux $releasever ($basearch)
+baseurl=http://public-yum.oracle.com/repo/OracleLinux/OL7/UEKR4/$basearch/
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-oracle
+gpgcheck=1
+enabled=1
+   
