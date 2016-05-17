@@ -1,0 +1,47 @@
+How to stop/start and disable/enable Firewall on Redhat 7 Linux system
+
+
+Stop and Start RHEL7 firewall
+Disable and Enable RHEL7 firewall
+The firewall on Redhat 7 Linux system is enabled by default. Normally there should not be a need to disable firewall but it may be quite handy for testing purposes etc. On Redhat 7 Linux system the firewall run as firewalld daemon. Bellow command can be used to check the firewall status:
+[root@rhel7 ~]# systemctl status firewalld
+firewalld.service - firewalld - dynamic firewall daemon
+   Loaded: loaded (/usr/lib/systemd/system/firewalld.service; enabled)
+   Active: active (running) since Thu 2014-09-04 19:18:47 EST; 3 months 28 days ago
+ Main PID: 539 (firewalld)
+   CGroup: /system.slice/firewalld.service
+           └─539 /usr/bin/python -Es /usr/sbin/firewalld --nofork --nopid
+
+Sep 04 19:18:45 rhel7 systemd[1]: Starting firewalld - dynamic firewall daemon...
+Sep 04 19:18:47 rhel7 systemd[1]: Started firewalld - dynamic firewall daemon.
+From the above output we can see that the firewall is enabled, which means it will start automatically after reboot and that is also current active. Furthermore, or you can even check all currently applied rules with:
+
+[root@rhel7 ~]# iptables-save
+
+1. Stop and Start RHEL7 firewall
+
+The firewall on Redhat 7 Linux system can be stopped by a following command:
+
+[root@rhel7 ~]# service firewalld stop
+
+Redirecting to /bin/systemctl stop  firewalld.service
+
+Stopped firewall will start again after system's reboot. To start firewall on Redhat 7 Linux system use:
+
+[root@rhel7 ~]# service firewalld start
+
+Redirecting to /bin/systemctl start  firewalld.service
+
+2. Disable and Enable RHEL7 firewall
+In order to completely disable RHEL7 firewall so it would no load after reboot run:
+
+[root@rhel7 ~]# systemctl disable firewalld
+rm '/etc/systemd/system/dbus-org.fedoraproject.FirewallD1.service'
+rm '/etc/systemd/system/basic.target.wants/firewalld.service'
+
+Now the firewall would not start after system's reboot. To enable the firewall again run:
+
+[root@rhel7 ~]# systemctl enable firewalld
+
+ln -s '/usr/lib/systemd/system/firewalld.service' '/etc/systemd/system/dbus-org.fedoraproject.FirewallD1.service'
+ln -s '/usr/lib/systemd/system/firewalld.service' '/etc/systemd/system/basic.target.wants/firewalld.service'
