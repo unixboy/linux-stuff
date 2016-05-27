@@ -1,0 +1,23 @@
+Git 2.x Installation on Linux
+The version of Git available from the Yum repositories is typically quite old. This article describes the manual installation of Git 2.x on Linux. The same method should work for all the RHEL clones (Oracle Linux, CentOS) and Fedora.
+
+Install the prerequisite packages and remove the any current Git installation.
+
+yum install curl-devel expat-devel gettext-devel openssl-devel zlib-devel -y
+yum install gcc perl-ExtUtils-MakeMaker -y
+yum remove git -y
+Download the latest Git installation from kernel.org and unpack it.
+
+cd /usr/src
+wget https://www.kernel.org/pub/software/scm/git/git-2.2.2.tar.gz
+tar xzf git-2.2.2.tar.gz
+Install it.
+
+cd git-2.2.2
+make prefix=/usr/local/git all
+make prefix=/usr/local/git install
+echo "export PATH=$PATH:/usr/local/git/bin" >> /etc/bashrc
+source /etc/bashrc
+Test it, by checking the version.
+
+git --version
