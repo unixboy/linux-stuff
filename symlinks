@@ -1,0 +1,48 @@
+sudo mount --bind SOURCEDIRECTORY TARGETDIRECTORY
+
+	
+Use hard links instead. This differs from a soft (symbolic) link. All programs, including git will treat the file as a regular file. Note that the contents can be modified by changing either the source or the destination.
+
+On OSX
+
+If you already have git and Xcode installed, install hardlink. It's a microscopic tool to create hard links.
+
+To create the hard link, simply:
+
+hln source destination
+On Linux and other Unix flavors
+
+The ln command can make hard links:
+
+ln source destination
+On Windows (Vista, 7, 8, …)
+
+Someone suggested to use mklink create a junction on Windows, but I haven't tried it:
+
+mklink /j "source" "destination"
+
+
+
+10
+down vote
+This is a pre-commit hook which replaces the symlink blobs in the index, with the content of those symlinks.
+
+Put this in .git/hooks/pre-commit, and make it executable:
+
+#!/bin/sh
+# (replace "find ." with "find ./<path>" below, to work with only specific paths)
+
+# (these lines are really all one line, on multiple lines for clarity)
+# ...find symlinks which do not dereference to directories...
+find . -type l -exec test '!' -d {} ';' -print -exec sh -c \
+# ...remove the symlink blob, and add the content diff, to the index/cache
+    'git rm --cached "$1"; diff -au /dev/null "$1" | git apply --cached -p1 -' \
+# ...and call out to "sh".
+    "process_links_to_nondir" {} ';'
+
+# the end
+Notes
+
+We use POSIX compliant functionality as much as possible; however, diff -a is not POSIX compliant, possibly among other things.
+
+There may be some mistakes/errors in this code, even though it was tested somewhat.
