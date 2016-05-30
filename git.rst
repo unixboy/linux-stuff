@@ -18,3 +18,5 @@ Execute the following in the command line before executing the Git command:
  set GIT_TRACE_PACKET=1
  set GIT_TRACE=1
  set GIT_CURL_VERBOSE=1
+
+
