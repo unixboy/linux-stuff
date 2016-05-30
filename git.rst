@@ -20,3 +20,13 @@ Execute the following in the command line before executing the Git command:
  set GIT_CURL_VERBOSE=1
 
 
+
+.netrc
+
+machine github.com
+login technoweenie
+password SECRET
+
+machine api.github.com
+login technoweenie
+password SECRET
