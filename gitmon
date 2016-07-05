@@ -1,0 +1,40 @@
+#!/bin/bash
+
+# Check for proper number of command line args.
+EXPECTED_ARGS=1
+E_BADARGS=65 
+
+if [ $# -lt $EXPECTED_ARGS ]
+then
+  echo "Usage: monitor-git-reps [DIR]"
+  echo "Checks the provided git repositories for uncommmited changes."
+  echo "Exit status of 1 indicates uncommited changes for some repositories."
+  exit $E_BADARGS
+fi
+
+WORKING_DIR=`pwd`
+REPOS=$@
+
+STATUS=0
+for dir in $REPOS ; do
+	if [ ! -d $dir ]; then
+		echo "XX - $dir [no such directory]"
+		STATUS=1
+		continue
+	fi
+
+	if [ -d $dir/.git ] ; then
+		cd $dir
+		if [ -n "$(git status --porcelain)" ]; then 
+			echo "++ - $dir"; 
+			STATUS=1
+		else 
+			echo "OK - $dir";
+		fi
+		cd $WORKING_DIR
+	else
+		echo "XX - $dir [not a git repository]"
+		STATUS=1
+	fi
+done
+exit $STATUS
