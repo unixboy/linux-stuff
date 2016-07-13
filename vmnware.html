@@ -1,0 +1,766 @@
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr" class="no-js">
+<head>
+    <meta charset="utf-8" />
+    <title>PowerCLI Usefull Scripts And Commands [SHIFT]</title>
+    <script>(function(H){H.className=H.className.replace(/\bno-js\b/,'js')})(document.documentElement)</script>
+    <meta name="generator" content="DokuWiki"/>
+<meta name="robots" content="index,follow"/>
+<meta name="keywords" content="scripts,vmware,notes"/>
+<meta property="fb:app_id" content="459110950841518"/>
+<meta property="fb:admins" content="132155500317679"/>
+<link rel="search" type="application/opensearchdescription+xml" href="/wiki/lib/exe/opensearch.php" title="SHIFT"/>
+<link rel="start" href="/wiki/"/>
+<link rel="contents" href="/wiki/powerclinotes?do=index" title="Sitemap"/>
+<link rel="alternate" type="application/rss+xml" title="Recent Changes" href="/wiki/feed.php"/>
+<link rel="alternate" type="application/rss+xml" title="Current namespace" href="/wiki/feed.php?mode=list&amp;ns="/>
+<link rel="alternate" type="text/html" title="Plain HTML" href="/wiki/_export/xhtml/powerclinotes"/>
+<link rel="alternate" type="text/plain" title="Wiki Markup" href="/wiki/_export/raw/powerclinotes"/>
+<link rel="canonical" href="http://www.getshifting.com/wiki/powerclinotes"/>
+<link rel="stylesheet" type="text/css" href="/wiki/lib/exe/css.php?t=dokuwiki&amp;tseed=99fb5ca1990e52077c6a9b0841aa7b6d"/>
+<script type="text/javascript">/*<![CDATA[*/var NS='';var JSINFO = {"id":"powerclinotes","namespace":""};
+/*!]]>*/</script>
+<script type="text/javascript" charset="utf-8" src="/wiki/lib/exe/js.php?t=dokuwiki&amp;tseed=99fb5ca1990e52077c6a9b0841aa7b6d"></script>
+<script type="text/javascript" src="//connect.facebook.net/en_US/all.js#xfbml=1"></script>
+<script type="text/javascript" charset="utf-8">/*<![CDATA[*/NS = "";var toolbar = [{"type":"format","title":"Bold Text","icon":"bold.png","key":"b","open":"**","close":"**","block":false},{"type":"format","title":"Italic Text","icon":"italic.png","key":"i","open":"\/\/","close":"\/\/","block":false},{"type":"format","title":"Underlined Text","icon":"underline.png","key":"u","open":"__","close":"__","block":false},{"type":"format","title":"Monospaced Text","icon":"mono.png","key":"m","open":"''","close":"''","block":false},{"type":"format","title":"Strike-through Text","icon":"strike.png","key":"d","open":"<del>","close":"<\/del>","block":false},{"type":"autohead","title":"Same Level Headline","icon":"hequal.png","key":"8","text":"Headline","mod":0,"block":true},{"type":"autohead","title":"Lower Headline","icon":"hminus.png","key":"9","text":"Headline","mod":1,"block":true},{"type":"autohead","title":"Higher Headline","icon":"hplus.png","key":"0","text":"Headline","mod":-1,"block":true},{"type":"picker","title":"Select Headline","icon":"h.png","class":"pk_hl","list":[{"type":"format","title":"Level 1 Headline","icon":"h1.png","key":"1","open":"====== ","close":" ======\\n"},{"type":"format","title":"Level 2 Headline","icon":"h2.png","key":"2","open":"===== ","close":" =====\\n"},{"type":"format","title":"Level 3 Headline","icon":"h3.png","key":"3","open":"==== ","close":" ====\\n"},{"type":"format","title":"Level 4 Headline","icon":"h4.png","key":"4","open":"=== ","close":" ===\\n"},{"type":"format","title":"Level 5 Headline","icon":"h5.png","key":"5","open":"== ","close":" ==\\n"}],"block":true},{"type":"format","title":"External Link","icon":"linkextern.png","open":"[[","close":"]]","sample":"http:\/\/example.com|External Link","block":false},{"type":"formatln","title":"Ordered List Item","icon":"ol.png","open":"  - ","close":"","key":"-","block":true},{"type":"formatln","title":"Unordered List Item","icon":"ul.png","open":"  * ","close":"","key":".","block":true},{"type":"insert","title":"Horizontal Rule","icon":"hr.png","insert":"\\n----\\n","block":true},{"type":"picker","title":"Smileys","icon":"smiley.png","list":{"8-)":"icon_cool.gif","8-O":"icon_eek.gif","8-o":"icon_eek.gif",":-(":"icon_sad.gif",":-)":"icon_smile.gif","=)":"icon_smile2.gif",":-\/":"icon_doubt.gif",":-\\":"icon_doubt2.gif",":-?":"icon_confused.gif",":-D":"icon_biggrin.gif",":-P":"icon_razz.gif",":-o":"icon_surprised.gif",":-O":"icon_surprised.gif",":-x":"icon_silenced.gif",":-X":"icon_silenced.gif",":-|":"icon_neutral.gif",";-)":"icon_wink.gif","m(":"facepalm.gif","^_^":"icon_fun.gif",":?:":"icon_question.gif",":!:":"icon_exclaim.gif","LOL":"icon_lol.gif","FIXME":"fixme.gif","DELETEME":"delete.gif"},"icobase":"smileys","block":false},{"type":"picker","title":"Special Chars","icon":"chars.png","list":["\u00c0","\u00e0","\u00c1","\u00e1","\u00c2","\u00e2","\u00c3","\u00e3","\u00c4","\u00e4","\u01cd","\u01ce","\u0102","\u0103","\u00c5","\u00e5","\u0100","\u0101","\u0104","\u0105","\u00c6","\u00e6","\u0106","\u0107","\u00c7","\u00e7","\u010c","\u010d","\u0108","\u0109","\u010a","\u010b","\u00d0","\u0111","\u00f0","\u010e","\u010f","\u00c8","\u00e8","\u00c9","\u00e9","\u00ca","\u00ea","\u00cb","\u00eb","\u011a","\u011b","\u0112","\u0113","\u0116","\u0117","\u0118","\u0119","\u0122","\u0123","\u011c","\u011d","\u011e","\u011f","\u0120","\u0121","\u0124","\u0125","\u00cc","\u00ec","\u00cd","\u00ed","\u00ce","\u00ee","\u00cf","\u00ef","\u01cf","\u01d0","\u012a","\u012b","\u0130","\u0131","\u012e","\u012f","\u0134","\u0135","\u0136","\u0137","\u0139","\u013a","\u013b","\u013c","\u013d","\u013e","\u0141","\u0142","\u013f","\u0140","\u0143","\u0144","\u00d1","\u00f1","\u0145","\u0146","\u0147","\u0148","\u00d2","\u00f2","\u00d3","\u00f3","\u00d4","\u00f4","\u00d5","\u00f5","\u00d6","\u00f6","\u01d1","\u01d2","\u014c","\u014d","\u0150","\u0151","\u0152","\u0153","\u00d8","\u00f8","\u0154","\u0155","\u0156","\u0157","\u0158","\u0159","\u015a","\u015b","\u015e","\u015f","\u0160","\u0161","\u015c","\u015d","\u0162","\u0163","\u0164","\u0165","\u00d9","\u00f9","\u00da","\u00fa","\u00db","\u00fb","\u00dc","\u00fc","\u01d3","\u01d4","\u016c","\u016d","\u016a","\u016b","\u016e","\u016f","\u01d6","\u01d8","\u01da","\u01dc","\u0172","\u0173","\u0170","\u0171","\u0174","\u0175","\u00dd","\u00fd","\u0178","\u00ff","\u0176","\u0177","\u0179","\u017a","\u017d","\u017e","\u017b","\u017c","\u00de","\u00fe","\u00df","\u0126","\u0127","\u00bf","\u00a1","\u00a2","\u00a3","\u00a4","\u00a5","\u20ac","\u00a6","\u00a7","\u00aa","\u00ac","\u00af","\u00b0","\u00b1","\u00f7","\u2030","\u00bc","\u00bd","\u00be","\u00b9","\u00b2","\u00b3","\u00b5","\u00b6","\u2020","\u2021","\u00b7","\u2022","\u00ba","\u2200","\u2202","\u2203","\u018f","\u0259","\u2205","\u2207","\u2208","\u2209","\u220b","\u220f","\u2211","\u203e","\u2212","\u2217","\u00d7","\u2044","\u221a","\u221d","\u221e","\u2220","\u2227","\u2228","\u2229","\u222a","\u222b","\u2234","\u223c","\u2245","\u2248","\u2260","\u2261","\u2264","\u2265","\u2282","\u2283","\u2284","\u2286","\u2287","\u2295","\u2297","\u22a5","\u22c5","\u25ca","\u2118","\u2111","\u211c","\u2135","\u2660","\u2663","\u2665","\u2666","\u03b1","\u03b2","\u0393","\u03b3","\u0394","\u03b4","\u03b5","\u03b6","\u03b7","\u0398","\u03b8","\u03b9","\u03ba","\u039b","\u03bb","\u03bc","\u039e","\u03be","\u03a0","\u03c0","\u03c1","\u03a3","\u03c3","\u03a4","\u03c4","\u03c5","\u03a6","\u03c6","\u03c7","\u03a8","\u03c8","\u03a9","\u03c9","\u2605","\u2606","\u260e","\u261a","\u261b","\u261c","\u261d","\u261e","\u261f","\u2639","\u263a","\u2714","\u2718","\u201e","\u201c","\u201d","\u201a","\u2018","\u2019","\u00ab","\u00bb","\u2039","\u203a","\u2014","\u2013","\u2026","\u2190","\u2191","\u2192","\u2193","\u2194","\u21d0","\u21d1","\u21d2","\u21d3","\u21d4","\u00a9","\u2122","\u00ae","\u2032","\u2033","[","]","{","}","~","(",")","%","\u00a7","$","#","|","@"],"block":false},{"type":"format","title":"Insert Tag-Syntax","icon":"..\/..\/plugins\/tag\/images\/tag-toolbar.png","open":"{{tag>","close":"}}"}];
+
+/*!]]>*/</script>
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <link rel="shortcut icon" href="/wiki/lib/tpl/dokuwiki/images/favicon.ico" />
+<link rel="apple-touch-icon" href="/wiki/lib/tpl/dokuwiki/images/apple-touch-icon.png" />
+    </head>
+
+<body>
+    <!--[if lte IE 8 ]><div id="IE8"><![endif]-->
+    <div id="dokuwiki__site"><div id="dokuwiki__top" class="site dokuwiki mode_show tpl_dokuwiki    showSidebar hasSidebar">
+
+        
+<!-- ********** HEADER ********** -->
+<div id="dokuwiki__header"><div class="pad group">
+
+    
+    <div class="headings group">
+        <ul class="a11y skip">
+            <li><a href="#dokuwiki__content">skip to content</a></li>
+        </ul>
+
+        <h1><a href="/wiki/start"  accesskey="h" title="[H]"><img src="/wiki/lib/tpl/dokuwiki/images/logo.png" width="64" height="64" alt="" /> <span>SHIFT</span></a></h1>
+                    <p class="claim">--- Sjoerd Hooft's InFormation Technology ---</p>
+            </div>
+
+    <div class="tools group">
+        <!-- USER TOOLS -->
+                    <div id="dokuwiki__usertools">
+                <h3 class="a11y">User Tools</h3>
+                <ul>
+                    <li><a href="/wiki/powerclinotes?do=login&amp;sectok=5b92883495271ddf48ccbf173da983ab"  class="action login" rel="nofollow" title="Log In">Log In</a></li>                </ul>
+            </div>
+        
+        <!-- SITE TOOLS -->
+        <div id="dokuwiki__sitetools">
+            <h3 class="a11y">Site Tools</h3>
+            <form action="/wiki/start" accept-charset="utf-8" class="search" id="dw__search" method="get" role="search"><div class="no"><input type="hidden" name="do" value="search" /><input type="text" placeholder="Search" id="qsearch__in" accesskey="f" name="id" class="edit" title="[F]" /><button type="submit" title="Search">Search</button><div id="qsearch__out" class="ajax_qsearch JSpopup"></div></div></form>            <div class="mobileTools">
+                <form action="/wiki/doku.php" method="get" accept-charset="utf-8"><div class="no"><input type="hidden" name="id" value="powerclinotes" /><select name="do" class="edit quickselect" title="Tools"><option value="">Tools</option><optgroup label="Page Tools"><option value="edit">Show pagesource</option><option value="revisions">Old revisions</option><option value="backlink">Backlinks</option></optgroup><optgroup label="Site Tools"><option value="recent">Recent Changes</option><option value="media">Media Manager</option><option value="index">Sitemap</option></optgroup><optgroup label="User Tools"><option value="login">Log In</option></optgroup></select><button type="submit">&gt;</button></div></form>            </div>
+            <ul>
+                <li><a href="/wiki/powerclinotes?do=recent"  class="action recent" accesskey="r" rel="nofollow" title="Recent Changes [R]">Recent Changes</a></li><li><a href="/wiki/powerclinotes?do=media&amp;ns="  class="action media" rel="nofollow" title="Media Manager">Media Manager</a></li><li><a href="/wiki/powerclinotes?do=index"  class="action index" accesskey="x" rel="nofollow" title="Sitemap [X]">Sitemap</a></li>            </ul>
+        </div>
+
+    </div>
+
+    <!-- BREADCRUMBS -->
+            <div class="breadcrumbs">
+                                        <div class="trace"><span class="bchead">Trace:</span> <span class="bcsep">•</span> <span class="curid"><bdi><a href="/wiki/powerclinotes"  class="breadcrumbs" title="powerclinotes">PowerCLI Usefull Scripts And Commands</a></bdi></span></div>
+                    </div>
+    
+
+
+    <hr class="a11y" />
+</div></div><!-- /header -->
+
+        <div class="wrapper group">
+
+                            <!-- ********** ASIDE ********** -->
+                <div id="dokuwiki__aside"><div class="pad aside include group">
+                    <h3 class="toggle">Sidebar</h3>
+                    <div class="content"><div class="group">
+                                                                        
+
+
+<p>
+<strong>Sponsor:</strong>
+</p>
+
+<p>
+
+<script type="text/javascript"><!--
+google_ad_client = "ca-pub-8613096447910897";
+/* SHIFT - sponsor field */
+google_ad_slot = "1510623041";
+google_ad_width = 234;
+google_ad_height = 60;
+//-->
+</script>
+<script type="text/javascript"
+src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+
+</p>
+
+<p>
+Would you like to <a href="/wiki/sponsor" class="wikilink1" title="sponsor">sponsor this site?</a> <br/>
+
+Or buy me a beer?: 
+<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+<input type="hidden" name="cmd" value="_s-xclick">
+<input type="hidden" name="hosted_button_id" value="QSMHME6XJU7BG">
+<input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donate_SM.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+<img alt="" border="0" src="https://www.paypalobjects.com/nl_NL/i/scr/pixel.gif" width="1" height="1">
+</form>
+
+</p>
+<hr />
+
+<p>
+<strong>Recently Changed Pages:</strong>
+</p>
+<ul>
+<li class="level1"><div class="li"><a href="/wiki/q/q306" class="wikilink1" title="q:q306">Question 306</a> </div>
+</li>
+<li class="level1"><div class="li"><a href="/wiki/q/q307" class="wikilink1" title="q:q307">Question 307</a> </div>
+</li>
+<li class="level1"><div class="li"><a href="/wiki/q/q308" class="wikilink1" title="q:q308">Question 308</a> </div>
+</li>
+<li class="level1"><div class="li"><a href="/wiki/q/qfaq" class="wikilink1" title="q:qfaq">Q FAQ</a> [Community] </div>
+</li>
+</ul>
+
+<p>
+<a href="/wiki/overview" class="wikilink1" title="overview">View All Pages</a> <br/>
+
+<a href="/wiki/q/qoverview" class="wikilink1" title="q:qoverview">View All Q Pages</a>
+</p>
+<hr />
+<div class="cloud">
+	<a href="/wiki/tag/ad?do=showtag&amp;tag=ad" class="cloud3_tag2" title="ad">ad</a>
+	<a href="/wiki/tag/admt?do=showtag&amp;tag=admt" class="cloud1_tag2" title="admt">admt</a>
+	<a href="/wiki/tag/aix?do=showtag&amp;tag=aix" class="cloud5_tag2" title="aix">aix</a>
+	<a href="/wiki/tag/apache?do=showtag&amp;tag=apache" class="cloud1_tag2" title="apache">apache</a>
+	<a href="/wiki/tag/backup?do=showtag&amp;tag=backup" class="cloud4_tag2" title="backup">backup</a>
+	<a href="/wiki/tag/blog?do=showtag&amp;tag=blog" class="cloud1_tag2" title="blog">blog</a>
+	<a href="/wiki/tag/bordermanager?do=showtag&amp;tag=bordermanager" class="cloud1_tag2" title="bordermanager">bordermanager</a>
+	<a href="/wiki/tag/cisco?do=showtag&amp;tag=cisco" class="cloud2_tag2" title="cisco">cisco</a>
+	<a href="/wiki/tag/cloud?do=showtag&amp;tag=cloud" class="cloud1_tag2" title="cloud">cloud</a>
+	<a href="/wiki/tag/config?do=showtag&amp;tag=config" class="cloud1_tag2" title="config">config</a>
+	<a href="/wiki/tag/dutch?do=showtag&amp;tag=dutch" class="cloud4_tag2" title="dutch">dutch</a>
+	<a href="/wiki/tag/edirectory?do=showtag&amp;tag=edirectory" class="cloud3_tag2" title="edirectory">edirectory</a>
+	<a href="/wiki/tag/email?do=showtag&amp;tag=email" class="cloud1_tag2" title="email">email</a>
+	<a href="/wiki/tag/fiber?do=showtag&amp;tag=fiber" class="cloud1_tag2" title="fiber">fiber</a>
+	<a href="/wiki/tag/fix?do=showtag&amp;tag=fix" class="cloud4_tag2" title="fix">fix</a>
+	<a href="/wiki/tag/gpo?do=showtag&amp;tag=gpo" class="cloud1_tag2" title="gpo">gpo</a>
+	<a href="/wiki/tag/groupwise?do=showtag&amp;tag=groupwise" class="cloud4_tag2" title="groupwise">groupwise</a>
+	<a href="/wiki/tag/hardware?do=showtag&amp;tag=hardware" class="cloud3_tag2" title="hardware">hardware</a>
+	<a href="/wiki/tag/idm?do=showtag&amp;tag=idm" class="cloud1_tag2" title="idm">idm</a>
+	<a href="/wiki/tag/install?do=showtag&amp;tag=install" class="cloud4_tag2" title="install">install</a>
+	<a href="/wiki/tag/itmanagement?do=showtag&amp;tag=itmanagement" class="cloud2_tag2" title="itmanagement">itmanagement</a>
+	<a href="/wiki/tag/law?do=showtag&amp;tag=law" class="cloud1_tag2" title="law">law</a>
+	<a href="/wiki/tag/ldap?do=showtag&amp;tag=ldap" class="cloud4_tag2" title="ldap">ldap</a>
+	<a href="/wiki/tag/linux?do=showtag&amp;tag=linux" class="cloud5_tag2" title="linux">linux</a>
+	<a href="/wiki/tag/mssql?do=showtag&amp;tag=mssql" class="cloud1_tag2" title="mssql">mssql</a>
+	<a href="/wiki/tag/myown?do=showtag&amp;tag=myown" class="cloud1_tag2" title="myown">myown</a>
+	<a href="/wiki/tag/netapp?do=showtag&amp;tag=netapp" class="cloud4_tag2" title="netapp">netapp</a>
+	<a href="/wiki/tag/netware?do=showtag&amp;tag=netware" class="cloud4_tag2" title="netware">netware</a>
+	<a href="/wiki/tag/network?do=showtag&amp;tag=network" class="cloud4_tag2" title="network">network</a>
+	<a href="/wiki/tag/notes?do=showtag&amp;tag=notes" class="cloud3_tag2" title="notes">notes</a>
+	<a href="/wiki/tag/oracle?do=showtag&amp;tag=oracle" class="cloud3_tag2" title="oracle">oracle</a>
+	<a href="/wiki/tag/performance?do=showtag&amp;tag=performance" class="cloud3_tag2" title="performance">performance</a>
+	<a href="/wiki/tag/phones?do=showtag&amp;tag=phones" class="cloud1_tag2" title="phones">phones</a>
+	<a href="/wiki/tag/redhat?do=showtag&amp;tag=redhat" class="cloud4_tag2" title="redhat">redhat</a>
+	<a href="/wiki/tag/scripts?do=showtag&amp;tag=scripts" class="cloud5_tag2" title="scripts">scripts</a>
+	<a href="/wiki/tag/security?do=showtag&amp;tag=security" class="cloud5_tag2" title="security">security</a>
+	<a href="/wiki/tag/software?do=showtag&amp;tag=software" class="cloud1_tag2" title="software">software</a>
+	<a href="/wiki/tag/solaris?do=showtag&amp;tag=solaris" class="cloud3_tag2" title="solaris">solaris</a>
+	<a href="/wiki/tag/srm?do=showtag&amp;tag=srm" class="cloud3_tag2" title="srm">srm</a>
+	<a href="/wiki/tag/storage?do=showtag&amp;tag=storage" class="cloud5_tag2" title="storage">storage</a>
+	<a href="/wiki/tag/syslog?do=showtag&amp;tag=syslog" class="cloud2_tag2" title="syslog">syslog</a>
+	<a href="/wiki/tag/tomcat?do=showtag&amp;tag=tomcat" class="cloud1_tag2" title="tomcat">tomcat</a>
+	<a href="/wiki/tag/tools?do=showtag&amp;tag=tools" class="cloud3_tag2" title="tools">tools</a>
+	<a href="/wiki/tag/tscitrix?do=showtag&amp;tag=tscitrix" class="cloud1_tag2" title="tscitrix">tscitrix</a>
+	<a href="/wiki/tag/unfinished?do=showtag&amp;tag=unfinished" class="cloud2_tag2" title="unfinished">unfinished</a>
+	<a href="/wiki/tag/vmware?do=showtag&amp;tag=vmware" class="cloud5_tag2" title="vmware">vmware</a>
+	<a href="/wiki/tag/websphere?do=showtag&amp;tag=websphere" class="cloud1_tag2" title="websphere">websphere</a>
+	<a href="/wiki/tag/wiki?do=showtag&amp;tag=wiki" class="cloud2_tag2" title="wiki">wiki</a>
+	<a href="/wiki/tag/windows?do=showtag&amp;tag=windows" class="cloud5_tag2" title="windows">windows</a>
+	<a href="/wiki/tag/zenworks?do=showtag&amp;tag=zenworks" class="cloud3_tag2" title="zenworks">zenworks</a>
+</div>
+
+<p>
+<a href="/wiki/alltags" class="wikilink1" title="alltags">View All Tags</a>
+</p>
+<hr />
+
+<p>
+
+<iframe src="//www.facebook.com/plugins/like.php?href=https%3A%2F%2Fwww.facebook.com%2Fpages%2FGetshifting%2F132155500317679&amp;send=false&amp;layout=button_count&amp;width=100&amp;show_faces=true&amp;font=arial&amp;colorscheme=light&amp;action=like&amp;height=21" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:100px; height:21px;" allowTransparency="true"></iframe>
+<script src="//platform.linkedin.com/in.js" type="text/javascript"></script><br>
+<a href="http://www.facebook.com/getshiftingdotcom" class="media" target="_blank" title="http://www.facebook.com/getshiftingdotcom"  rel="nofollow"><img src="/wiki/_media/fb-icon-14x14.png" class="media" alt="" /></a> - <a href="http://www.facebook.com/getshiftingdotcom" class="urlextern" target="_blank" title="http://www.facebook.com/getshiftingdotcom"  rel="nofollow">Use this for comments and questions!</a> <br/>
+
+
+<script type="IN/MemberProfile" data-id="http://www.linkedin.com/pub/sjoerd-hooft/73/94/203" data-format="hover" data-related="false"></script><br>
+
+<a href="http://www.getshifting.com/wiki/feed.php" class="media" target="_blank" title="http://www.getshifting.com/wiki/feed.php"  rel="nofollow"><img src="/wiki/_media/feed-icon-14x14.png" class="media" alt="" /></a> <br/>
+
+</p>
+<hr />
+
+<p>
+<strong>WIKI Disclaimer:</strong>
+As with most other things on the Internet, the content on this wiki is not supported. It was contributed by <a href="/wiki/user/sjoerd_hooft" class="wikilink1" title="user:sjoerd_hooft">me</a> and is published “as is”. It has worked for me, and might work for you. <br/>
+
+Also note that any view or statement expressed anywhere on this site are strictly mine and not the opinions or views of my employer. <br/>
+
+</p>
+<hr />
+
+<p>
+<a href="/wiki/q/qtermsandconditions" class="wikilink1" title="q:qtermsandconditions">Terms And Conditions for Q users</a>
+</p>
+<hr />
+
+<p>
+<strong>Pages with comments</strong>
+</p>
+
+<p>
+<a href="/wiki/allcomments" class="wikilink1" title="allcomments">View All Comments</a>
+</p>
+<div class="tags"><span>
+	<a href="/wiki/tag/wiki?do=showtag&amp;tag=wiki" class="wikilink1" title="tag:wiki" rel="tag">wiki</a>
+</span></div>
+                                            </div></div>
+                </div></div><!-- /aside -->
+            
+            <!-- ********** CONTENT ********** -->
+            <div id="dokuwiki__content"><div class="pad group">
+                
+                <div class="pageId"><span>powerclinotes</span></div>
+
+                <div class="page group">
+                                                            <!-- wikipage start -->
+                    <!-- TOC START -->
+<div id="dw__toc">
+<h3 class="toggle">Table of Contents</h3>
+<div>
+
+<ul class="toc">
+<li class="level1"><div class="li"><a href="#powercli_usefull_scripts_and_commands">PowerCLI Usefull Scripts And Commands</a></div></li>
+<li class="level1"><div class="li"><a href="#getting_all_possible_values_for_objects">Getting all Possible Values for Objects</a></div></li>
+<li class="level1"><div class="li"><a href="#commands_and_oneliners">Commands And OneLiners</a></div>
+<ul class="toc">
+<li class="level2"><div class="li"><a href="#vm_with_cpu_reservation">VM with CPU Reservation</a></div></li>
+<li class="level2"><div class="li"><a href="#get_all_vms_and_ip_addresses">Get All VMs and IP Addresses</a></div></li>
+<li class="level2"><div class="li"><a href="#vm_with_cpu_limit">VM with CPU Limit</a></div></li>
+<li class="level2"><div class="li"><a href="#vm_with_memory_reservation">VM with Memory Reservation</a></div></li>
+<li class="level2"><div class="li"><a href="#vm_with_memory_limit">VM with Memory Limit</a></div></li>
+<li class="level2"><div class="li"><a href="#get_all_cpu_and_memory_values">Get All CPU and Memory Values</a></div></li>
+<li class="level2"><div class="li"><a href="#vmware_tools_version">VMWare Tools Version</a></div></li>
+<li class="level2"><div class="li"><a href="#get_hosts_with_specific_version">Get Hosts with Specific Version</a></div></li>
+<li class="level2"><div class="li"><a href="#get_datastores_and_used_storage_for_vms_within_cluster">Get Datastores and Used Storage for VMs within Cluster</a></div></li>
+<li class="level2"><div class="li"><a href="#get_all_datastores_for_all_clusters_and_see_usage">Get All Datastores for All Clusters and See Usage</a></div></li>
+<li class="level2"><div class="li"><a href="#get_number_of_paths_in_use_per_host_within_cluster">Get Number of Paths in Use per Host within Cluster</a></div></li>
+<li class="level2"><div class="li"><a href="#scan_storage_for_all_hosts_within_cluster">Scan Storage for all Hosts within Cluster</a></div></li>
+<li class="level2"><div class="li"><a href="#set_mpio_settings_for_all_hosts_in_cluster">Set MPIO Settings for All Hosts in Cluster</a></div></li>
+<li class="level2"><div class="li"><a href="#count_the_number_of_vms_in_a_cluster_that_match_a_name_pattern">Count the Number of VMs in a Cluster That Match a Name Pattern</a></div></li>
+<li class="level2"><div class="li"><a href="#get_all_dead_paths_in_a_datacenter">Get all Dead Paths In a Datacenter</a></div></li>
+<li class="level2"><div class="li"><a href="#get_all_lun_ids_in_use_on_an_esx_server">Get All LUN IDs in use on an ESX Server</a></div></li>
+<li class="level2"><div class="li"><a href="#get_all_lun_ids_in_use_on_a_netapp_filer">Get All LUN IDs in use on a NetApp Filer</a></div></li>
+<li class="level2"><div class="li"><a href="#get_all_volumes_from_netapp_filer">Get All Volumes From NetApp Filer</a></div></li>
+<li class="level2"><div class="li"><a href="#working_with_credentials">Working with Credentials</a></div></li>
+<li class="level2"><div class="li"><a href="#get_the_number_of_vms_on_all_datastores_in_a_datacenter">Get the Number of VMs on all Datastores in a Datacenter</a></div></li>
+<li class="level2"><div class="li"><a href="#get_all_vms_with_old_hardware_level_version">Get All VMs with Old Hardware Level Version</a></div></li>
+<li class="level2"><div class="li"><a href="#set_vm_description_with_csv_file">Set VM Description with CSV File</a></div></li>
+</ul>
+</li>
+<li class="level1"><div class="li"><a href="#scripts">Scripts</a></div>
+<ul class="toc">
+<li class="level2"><div class="li"><a href="#resource_pools_with_ballooning_and_swapping">Resource Pools with Ballooning and Swapping</a></div></li>
+<li class="level2"><div class="li"><a href="#vms_with_ballooning_and_swapping">VMs with Ballooning and Swapping</a></div></li>
+<li class="level2"><div class="li"><a href="#vms_network_info">VMs Network Info</a></div></li>
+<li class="level2"><div class="li"><a href="#vms_boot_time">VMs Boot Time</a></div></li>
+<li class="level2"><div class="li"><a href="#reading_values_for_properties_from_csv_file">Reading Values for Properties from CSV file</a></div></li>
+</ul>
+</li>
+<li class="level1"><div class="li"><a href="#combining_powercli_and_powershell">Combining PowerCLI and Powershell</a></div></li>
+<li class="level1"><div class="li"><a href="#resources">Resources</a></div></li>
+<li class="level1"><div class="li"><a href="#discussion__section">Discussion</a></div></li>
+</ul>
+</div>
+</div>
+<!-- TOC END -->
+
+<h1 class="sectionedit1" id="powercli_usefull_scripts_and_commands">PowerCLI Usefull Scripts And Commands</h1>
+<div class="level1">
+
+<p>
+This is an overview page with small PowerCLI scripts and or commands.
+</p>
+
+</div>
+
+<h1 class="sectionedit2" id="getting_all_possible_values_for_objects">Getting all Possible Values for Objects</h1>
+<div class="level1">
+
+<p>
+If only I knew then what I know now! When working on <a href="/wiki/powerclicsvvminfo" class="wikilink1" title="powerclicsvvminfo">Script: PowerCLI: Create CSV with VMInfo</a> I spent some serious time on finding what properties and values are available on certain objects. Today I finally figured it out, simply use “Select *”:
+</p>
+<pre class="code powershell"><span class="br0">&#91;</span>vSphere PowerCLI<span class="br0">&#93;</span> C:\<span class="sy0">&gt;</span> Get<span class="sy0">-</span>NetworkAdapter <span class="sy0">-</span>vm testvm01 <span class="sy0">|</span> <span class="kw2">select</span> <span class="sy0">*</span>
+&nbsp;
+&nbsp;
+MacAddress       : 00:<span class="nu0">50</span>:<span class="nu0">56</span>:<span class="nu0">89</span>:2e:<span class="nu0">18</span>
+WakeOnLanEnabled : True
+NetworkName      : SFT0<span class="sy0">-</span>VLAN2
+<span class="kw2">Type</span>             : Flexible
+ParentId         : VirtualMachine<span class="sy0">-</span>vm<span class="sy0">-</span><span class="nu0">117451</span>
+Parent           : testvm01
+Uid              : <span class="sy0">/</span>VIServer<span class="sy0">=@</span>localhost:<span class="nu0">443</span><span class="sy0">/</span>VirtualMachine<span class="sy0">=</span>VirtualMachine<span class="sy0">-</span>vm<span class="sy0">-</span><span class="nu0">11</span>
+                   <span class="nu0">7451</span><span class="sy0">/</span>NetworkAdapter<span class="sy0">=</span><span class="nu0">4000</span><span class="sy0">/</span>
+ConnectionState  : Connected:True
+ExtensionData    : VMware.Vim.VirtualPCNet32
+Id               : VirtualMachine<span class="sy0">-</span>vm<span class="sy0">-</span><span class="nu0">117451</span><span class="sy0">/</span><span class="nu0">4000</span>
+Name             : Network adapter <span class="nu0">1</span></pre>
+
+</div>
+
+<h1 class="sectionedit3" id="commands_and_oneliners">Commands And OneLiners</h1>
+<div class="level1">
+
+</div>
+
+<h2 class="sectionedit4" id="vm_with_cpu_reservation">VM with CPU Reservation</h2>
+<div class="level2">
+<pre class="code powershell">Get<span class="sy0">-</span>VM <span class="sy0">|</span> Get<span class="sy0">-</span>VMResourceConfiguration <span class="sy0">|</span> <span class="kw3">where</span> <span class="br0">&#123;</span><a target="_blank" href="about:blank"><span class="kw6">$_</span></a>.CPUReservationMhz <span class="kw4">-ne</span> <span class="st0">'0'</span><span class="br0">&#125;</span></pre>
+
+<p>
+And setting the CPU reservation to 0:
+</p>
+<pre class="code powershell">Get<span class="sy0">-</span>VM <span class="sy0">|</span> Get<span class="sy0">-</span>VMResourceConfiguration <span class="sy0">|</span> <span class="kw3">where</span> <span class="br0">&#123;</span><a target="_blank" href="about:blank"><span class="kw6">$_</span></a>.CPUReservationMhz <span class="kw4">-ne</span> <span class="st0">'0'</span><span class="br0">&#125;</span> <span class="sy0">|</span> Set<span class="sy0">-</span>VMResourceConfiguration <span class="sy0">-</span>CPUReservationMhz <span class="nu0">0</span></pre>
+
+</div>
+
+<h2 class="sectionedit5" id="get_all_vms_and_ip_addresses">Get All VMs and IP Addresses</h2>
+<div class="level2">
+<pre class="code powershell">Get<span class="sy0">-</span>VM <span class="sy0">|</span> <span class="kw2">Select</span> Name<span class="sy0">,</span> <span class="sy0">@</span><span class="br0">&#123;</span>N<span class="sy0">=</span><span class="st0">&quot;IP Address&quot;</span>;E<span class="sy0">=</span><span class="br0">&#123;</span><span class="sy0">@</span><span class="br0">&#40;</span><a target="_blank" href="about:blank"><span class="kw6">$_</span></a>.guest.IPAddress<span class="br0">&#91;</span><span class="nu0">0</span><span class="br0">&#93;</span><span class="br0">&#41;</span><span class="br0">&#125;</span><span class="br0">&#125;</span></pre>
+
+<p>
+Export to CSV: 
+</p>
+<pre class="code powershell">Get<span class="sy0">-</span>VM <span class="sy0">|</span> <span class="kw2">Select</span> Name<span class="sy0">,</span> <span class="sy0">@</span><span class="br0">&#123;</span>N<span class="sy0">=</span><span class="st0">&quot;IP Address&quot;</span>;E<span class="sy0">=</span><span class="br0">&#123;</span><span class="sy0">@</span><span class="br0">&#40;</span><a target="_blank" href="about:blank"><span class="kw6">$_</span></a>.guest.IPAddress<span class="br0">&#91;</span><span class="nu0">0</span><span class="br0">&#93;</span><span class="br0">&#41;</span><span class="br0">&#125;</span><span class="br0">&#125;</span> <span class="sy0">|</span> <span class="kw1">Export-Csv</span> c:\serverandip.csv</pre>
+
+</div>
+
+<h2 class="sectionedit6" id="vm_with_cpu_limit">VM with CPU Limit</h2>
+<div class="level2">
+<pre class="code powershell">Get<span class="sy0">-</span>VM <span class="sy0">|</span> Get<span class="sy0">-</span>VMResourceConfiguration <span class="sy0">|</span> <span class="kw3">where</span> <span class="br0">&#123;</span><a target="_blank" href="about:blank"><span class="kw6">$_</span></a>.CPULimitMhz <span class="kw4">-ne</span> <span class="st0">'-1'</span><span class="br0">&#125;</span></pre>
+
+<p>
+And setting the CPU limit to unlimited:
+</p>
+<pre class="code powershell">Get<span class="sy0">-</span>VM <span class="sy0">|</span> Get<span class="sy0">-</span>VMResourceConfiguration <span class="sy0">|</span> <span class="kw3">where</span> <span class="br0">&#123;</span><a target="_blank" href="about:blank"><span class="kw6">$_</span></a>.CPULimitMhz <span class="kw4">-ne</span> <span class="st0">'-1'</span><span class="br0">&#125;</span> <span class="sy0">|</span> Set<span class="sy0">-</span>VMResourceConfiguration <span class="sy0">-</span>CPULimitMhz $null</pre>
+
+</div>
+
+<h2 class="sectionedit7" id="vm_with_memory_reservation">VM with Memory Reservation</h2>
+<div class="level2">
+<pre class="code powershell">Get<span class="sy0">-</span>VM <span class="sy0">|</span> Get<span class="sy0">-</span>VMResourceConfiguration <span class="sy0">|</span> <span class="kw3">where</span> <span class="br0">&#123;</span><a target="_blank" href="about:blank"><span class="kw6">$_</span></a>.MemReservationMB <span class="kw4">-ne</span> <span class="st0">'0'</span><span class="br0">&#125;</span></pre>
+
+<p>
+And setting the memory reservation to 0:
+</p>
+<pre class="code powershell">Get<span class="sy0">-</span>VM <span class="sy0">|</span> Get<span class="sy0">-</span>VMResourceConfiguration <span class="sy0">|</span> <span class="kw3">where</span> <span class="br0">&#123;</span><a target="_blank" href="about:blank"><span class="kw6">$_</span></a>.MemReservationMB <span class="kw4">-ne</span> <span class="st0">'0'</span><span class="br0">&#125;</span> <span class="sy0">|</span> Set<span class="sy0">-</span>VMResourceConfiguration <span class="sy0">-</span>MemReservationMB <span class="nu0">0</span></pre>
+
+<p>
+Note that if you change the memory reservation, and there is not enough free space in the datastore the next time the VM is powered on the operation will fail. To prevent this you can see all this information with this command: 
+</p>
+<pre class="code powershell"><span class="kw3">ForEach</span> <span class="br0">&#40;</span><span class="re0">$vm</span> <span class="kw3">in</span> <span class="br0">&#40;</span>Get<span class="sy0">-</span>VM <span class="sy0">|</span> Get<span class="sy0">-</span>VMResourceConfiguration <span class="sy0">|</span> <span class="kw3">where</span> <span class="br0">&#123;</span><a target="_blank" href="about:blank"><span class="kw6">$_</span></a>.MemReservationMB <span class="kw4">-ne</span> <span class="st0">'0'</span><span class="br0">&#125;</span> <span class="sy0">|</span> <span class="kw3">ForEach</span> <span class="br0">&#123;</span><a target="_blank" href="about:blank"><span class="kw6">$_</span></a>.VM<span class="br0">&#125;</span><span class="br0">&#41;</span><span class="br0">&#41;</span><span class="br0">&#123;</span>Get<span class="sy0">-</span>VM <span class="re0">$vm</span> <span class="sy0">|</span> <span class="kw2">Select</span> Name<span class="sy0">,</span>PowerState<span class="sy0">,@</span><span class="br0">&#123;</span>N<span class="sy0">=</span><span class="st0">&quot;Reservation&quot;</span>;E<span class="sy0">=</span><span class="br0">&#123;</span>Get<span class="sy0">-</span>VMResourceConfiguration <span class="sy0">-</span>VM <a target="_blank" href="about:blank"><span class="kw6">$_</span></a> <span class="sy0">|</span> <span class="kw3">ForEach</span> <span class="br0">&#123;</span><a target="_blank" href="about:blank"><span class="kw6">$_</span></a>.MemReservationMB<span class="br0">&#125;</span><span class="br0">&#125;</span><span class="br0">&#125;</span><span class="sy0">,@</span><span class="br0">&#123;</span>N<span class="sy0">=</span><span class="st0">&quot;Datastore&quot;</span>;E<span class="sy0">=</span><span class="br0">&#123;</span>Get<span class="sy0">-</span>Datastore <span class="sy0">-</span>VM <a target="_blank" href="about:blank"><span class="kw6">$_</span></a><span class="br0">&#125;</span><span class="br0">&#125;</span><span class="sy0">,@</span><span class="br0">&#123;</span>N<span class="sy0">=</span><span class="st0">&quot;Datastore Free Space&quot;</span>;E<span class="sy0">=</span><span class="br0">&#123;</span>Get<span class="sy0">-</span>Datastore <span class="sy0">-</span>VM <a target="_blank" href="about:blank"><span class="kw6">$_</span></a> <span class="sy0">|</span> <span class="kw3">ForEach</span> <span class="br0">&#123;</span><a target="_blank" href="about:blank"><span class="kw6">$_</span></a>.FreeSpaceMB<span class="br0">&#125;</span><span class="br0">&#125;</span><span class="br0">&#125;</span><span class="br0">&#125;</span></pre>
+
+<p>
+This is a small script to automatically remove the reservation if the datastore has enough free space: 
+</p>
+<pre class="code powershell"><span class="kw3">ForEach</span> <span class="br0">&#40;</span><span class="re0">$vm</span> <span class="kw3">in</span> <span class="br0">&#40;</span>Get<span class="sy0">-</span>VM <span class="sy0">|</span> Get<span class="sy0">-</span>VMResourceConfiguration <span class="sy0">|</span> <span class="kw3">where</span> <span class="br0">&#123;</span><a target="_blank" href="about:blank"><span class="kw6">$_</span></a>.MemReservationMB <span class="kw4">-ne</span> <span class="st0">'0'</span><span class="br0">&#125;</span> <span class="sy0">|</span> <span class="kw3">ForEach</span> <span class="br0">&#123;</span><a target="_blank" href="about:blank"><span class="kw6">$_</span></a>.VM<span class="br0">&#125;</span><span class="br0">&#41;</span><span class="br0">&#41;</span><span class="br0">&#123;</span>
+  <span class="co1"># $name = (Get-VM $vm | ForEach {$_.Name})</span>
+  <span class="re0">$powerstate</span> <span class="sy0">=</span> <span class="br0">&#40;</span>Get<span class="sy0">-</span>VM <span class="re0">$vm</span> <span class="sy0">|</span> <span class="kw3">ForEach</span> <span class="br0">&#123;</span><a target="_blank" href="about:blank"><span class="kw6">$_</span></a>.PowerState<span class="br0">&#125;</span><span class="br0">&#41;</span>
+  <span class="br0">&#91;</span><span class="re3">int</span><span class="br0">&#93;</span><span class="re0">$reservation</span> <span class="sy0">=</span> <span class="br0">&#40;</span>Get<span class="sy0">-</span>VMResourceConfiguration <span class="sy0">-</span>VM <span class="re0">$vm</span> <span class="sy0">|</span> <span class="kw3">ForEach</span> <span class="br0">&#123;</span><a target="_blank" href="about:blank"><span class="kw6">$_</span></a>.MemReservationMB<span class="br0">&#125;</span><span class="br0">&#41;</span>
+  <span class="re0">$datastore</span> <span class="sy0">=</span> <span class="br0">&#40;</span>Get<span class="sy0">-</span>Datastore <span class="sy0">-</span>VM <span class="re0">$vm</span> <span class="br0">&#41;</span>
+  <span class="br0">&#91;</span><span class="re3">int</span><span class="br0">&#93;</span><span class="re0">$dsfreespace</span> <span class="sy0">=</span> <span class="re0">$datastore</span>.FreeSpaceMB
+  <span class="br0">&#91;</span><span class="re3">int</span><span class="br0">&#93;</span><span class="re0">$numberofds</span> <span class="sy0">=</span> <span class="br0">&#40;</span>Get<span class="sy0">-</span>Datastore <span class="sy0">-</span>VM <span class="re0">$vm</span> <span class="sy0">|</span><span class="kw1">Measure-object</span><span class="br0">&#41;</span>.Count
+  <span class="kw1">write-host</span> <span class="st0">&quot;VM = $vm <span class="es0">`n</span><span class="es0">`t</span> PowerState = $powerstate <span class="es0">`n</span><span class="es0">`t</span> Memory Reservation = $reservation <span class="es0">`n</span><span class="es0">`t</span> DataStore VM = $datastore <span class="es0">`n</span><span class="es0">`t</span> Free Space on datastore = $dsfreespace <span class="es0">`n</span><span class="es0">`t</span> Number of Datastores is $numberofds&quot;</span>
+  <span class="kw3">if</span> <span class="br0">&#40;</span><span class="br0">&#40;</span><span class="br0">&#40;</span><span class="re0">$dsfreespace</span> <span class="sy0">-</span> <span class="re0">$reservation</span><span class="br0">&#41;</span> <span class="kw4">-gt</span> <span class="st0">&quot;0&quot;</span><span class="br0">&#41;</span> <span class="kw4">-and</span> <span class="br0">&#40;</span><span class="re0">$numberofds</span> <span class="kw4">-eq</span> <span class="st0">&quot;1&quot;</span><span class="br0">&#41;</span><span class="br0">&#41;</span><span class="br0">&#123;</span>
+     <span class="kw1">Write-Host</span> <span class="st0">&quot;Now removing the memory reservation $reservation for VM $vm&quot;</span> <span class="kw5">-ForegroundColor</span> Green
+     Get<span class="sy0">-</span>VMResourceConfiguration <span class="sy0">-</span>VM <span class="re0">$vm</span> <span class="sy0">|</span> Set<span class="sy0">-</span>VMResourceConfiguration <span class="sy0">-</span>MemReservationMB <span class="nu0">0</span>
+  <span class="br0">&#125;</span>
+  <span class="kw3">else</span> <span class="br0">&#123;</span>
+     <span class="kw1">Write-Host</span> <span class="st0">&quot;Memory reservation ($reservation) cannot be removed because there is not enough free space on the datastore, or because the VM has multiple datastores.&quot;</span> <span class="kw5">-ForegroundColor</span> Red
+  <span class="br0">&#125;</span>
+<span class="br0">&#125;</span></pre>
+<blockquote><div class="no">
+ Note: if you just want to view the VMs for which the change cannot be done automatically comment the other Write-Host lines out. </div></blockquote>
+
+</div>
+
+<h2 class="sectionedit8" id="vm_with_memory_limit">VM with Memory Limit</h2>
+<div class="level2">
+<pre class="code powershell">Get<span class="sy0">-</span>VM <span class="sy0">|</span> Get<span class="sy0">-</span>VMResourceConfiguration <span class="sy0">|</span> <span class="kw3">where</span> <span class="br0">&#123;</span><a target="_blank" href="about:blank"><span class="kw6">$_</span></a>.MemLimitMB <span class="kw4">-ne</span> <span class="st0">'-1'</span><span class="br0">&#125;</span></pre>
+
+<p>
+And setting the memory limit to unlimited:
+</p>
+<pre class="code powershell">Get<span class="sy0">-</span>VM <span class="sy0">|</span> Get<span class="sy0">-</span>VMResourceConfiguration <span class="sy0">|</span> <span class="kw3">where</span> <span class="br0">&#123;</span><a target="_blank" href="about:blank"><span class="kw6">$_</span></a>.MemLimitMB <span class="kw4">-ne</span> <span class="st0">'-1'</span><span class="br0">&#125;</span> <span class="sy0">|</span> Set<span class="sy0">-</span>VMResourceConfiguration <span class="sy0">-</span>MemLimitMB $null</pre>
+
+</div>
+
+<h2 class="sectionedit9" id="get_all_cpu_and_memory_values">Get All CPU and Memory Values</h2>
+<div class="level2">
+<pre class="code powershell"><span class="re0">$startdir</span> <span class="sy0">=</span> <span class="st0">&quot;D:\sjoerd&quot;</span>
+<span class="re0">$csvfile</span> <span class="sy0">=</span> <span class="st0">&quot;$startdir\memlimits.csv&quot;</span>
+&nbsp;
+<span class="re0">$myCol</span> <span class="sy0">=</span> <span class="sy0">@</span><span class="br0">&#40;</span><span class="br0">&#41;</span>
+&nbsp;
+<span class="kw3">foreach</span> <span class="br0">&#40;</span><span class="re0">$VM</span> <span class="kw3">in</span> <span class="br0">&#40;</span>Get<span class="sy0">-</span>VM <span class="sy0">|</span> Get<span class="sy0">-</span>VMResourceConfiguration <span class="sy0">|</span> <span class="kw3">where</span> <span class="br0">&#123;</span><a target="_blank" href="about:blank"><span class="kw6">$_</span></a>.MemLimitMB <span class="kw4">-ne</span> <span class="st0">'-1'</span><span class="br0">&#125;</span><span class="br0">&#41;</span><span class="br0">&#41;</span><span class="br0">&#123;</span>
+&nbsp;
+<span class="re0">$vmview</span> <span class="sy0">=</span> Get<span class="sy0">-</span>VM <span class="re0">$VM</span> <span class="sy0">|</span> Get<span class="sy0">-</span>View
+&nbsp;
+<span class="re0">$VMInfo</span> <span class="sy0">=</span> <span class="st0">&quot;&quot;</span> <span class="sy0">|</span><span class="kw1">select-Object</span> VMName<span class="sy0">,</span>CPUReservation<span class="sy0">,</span>CPULimit<span class="sy0">,</span>CPUShares<span class="sy0">,</span>NumCPU<span class="sy0">,</span>MEMSize<span class="sy0">,</span>MEMReservation<span class="sy0">,</span>MEMLimit<span class="sy0">,</span>MEMShares
+<span class="re0">$VMInfo</span>.VMName <span class="sy0">=</span> <span class="re0">$vmview</span>.Name
+<span class="re0">$VMInfo</span>.CPUReservation <span class="sy0">=</span> <span class="re0">$vmview</span>.Config.CpuAllocation.Reservation
+<span class="kw3">If</span> <span class="br0">&#40;</span><span class="re0">$vmview</span>.Config.CpuAllocation.Limit<span class="kw4">-eq</span> <span class="st0">&quot;-1&quot;</span><span class="br0">&#41;</span><span class="br0">&#123;</span><span class="re0">$VMInfo</span>.CPULimit <span class="sy0">=</span> <span class="st0">&quot;Unlimited&quot;</span><span class="br0">&#125;</span>
+<span class="kw3">Else</span><span class="br0">&#123;</span><span class="re0">$VMInfo</span>.CPULimit <span class="sy0">=</span> <span class="re0">$vmview</span>.Config.CpuAllocation.Limit<span class="br0">&#125;</span>
+<span class="re0">$VMInfo</span>.CPUShares <span class="sy0">=</span> <span class="re0">$vmview</span>.Config.CpuAllocation.Shares.Shares
+<span class="re0">$VMInfo</span>.NumCPU <span class="sy0">=</span> <span class="re0">$VM</span>.NumCPU
+<span class="re0">$VMInfo</span>.MEMSize <span class="sy0">=</span> <span class="re0">$vmview</span>.Config.Hardware.MemoryMB
+<span class="re0">$VMInfo</span>.MEMReservation <span class="sy0">=</span> <span class="re0">$vmview</span>.Config.MemoryAllocation.Reservation
+<span class="kw3">If</span> <span class="br0">&#40;</span><span class="re0">$vmview</span>.Config.MemoryAllocation.Limit<span class="kw4">-eq</span> <span class="st0">&quot;-1&quot;</span><span class="br0">&#41;</span><span class="br0">&#123;</span><span class="re0">$VMInfo</span>.MEMLimit <span class="sy0">=</span> <span class="st0">&quot;Unlimited&quot;</span><span class="br0">&#125;</span>
+<span class="kw3">Else</span><span class="br0">&#123;</span><span class="re0">$VMInfo</span>.MEMLimit <span class="sy0">=</span> <span class="re0">$vmview</span>.Config.MemoryAllocation.Limit<span class="br0">&#125;</span>
+&nbsp;
+<span class="re0">$myCol</span> <span class="sy0">+=</span> <span class="re0">$VMInfo</span>
+<span class="br0">&#125;</span>
+&nbsp;
+<span class="re0">$myCol</span> <span class="sy0">|</span><span class="kw1">Export-csv</span> <span class="kw5">-NoTypeInformation</span> $csvfile</pre>
+
+</div>
+
+<h2 class="sectionedit10" id="vmware_tools_version">VMWare Tools Version</h2>
+<div class="level2">
+<pre class="code powershell">get<span class="sy0">-</span>vm <span class="sy0">|%</span> <span class="br0">&#123;</span> get<span class="sy0">-</span>view <a target="_blank" href="about:blank"><span class="kw6">$_</span></a>.id <span class="br0">&#125;</span> <span class="sy0">|</span> <span class="kw2">select</span> Name<span class="sy0">,</span> <span class="sy0">@</span><span class="br0">&#123;</span> Name<span class="sy0">=</span><span class="st0">&quot;;ToolsVersion&quot;</span>;; Expression<span class="sy0">=</span><span class="br0">&#123;</span><a target="_blank" href="about:blank"><span class="kw6">$_</span></a>.config.tools.toolsVersion<span class="br0">&#125;</span><span class="br0">&#125;</span></pre>
+
+</div>
+
+<h2 class="sectionedit11" id="get_hosts_with_specific_version">Get Hosts with Specific Version</h2>
+<div class="level2">
+<pre class="code powershell">get<span class="sy0">-</span>vmhost <span class="sy0">|</span> <span class="kw1">where-object</span> <span class="br0">&#123;</span> <a target="_blank" href="about:blank"><span class="kw6">$_</span></a>.version <span class="kw4">-eq</span> <span class="st0">&quot;4.1.0&quot;</span> <span class="br0">&#125;</span> <span class="sy0">|</span> <span class="kw2">select</span> name<span class="sy0">,</span>version</pre>
+
+</div>
+
+<h2 class="sectionedit12" id="get_datastores_and_used_storage_for_vms_within_cluster">Get Datastores and Used Storage for VMs within Cluster</h2>
+<div class="level2">
+<pre class="code powershell">Get<span class="sy0">-</span>Cluster <span class="st0">&quot;Acceptance&quot;</span> <span class="sy0">|</span> Get<span class="sy0">-</span>VM <span class="sy0">|</span> <span class="kw2">Select</span> Name<span class="sy0">,</span> <span class="sy0">@</span><span class="br0">&#123;</span>N<span class="sy0">=</span><span class="st0">&quot;Datastore&quot;</span>;E<span class="sy0">=</span><span class="br0">&#123;</span>Get<span class="sy0">-</span>Datastore <span class="sy0">-</span>vm <a target="_blank" href="about:blank"><span class="kw6">$_</span></a><span class="br0">&#125;</span><span class="br0">&#125;</span><span class="sy0">,</span> UsedSpaceGB<span class="sy0">,</span> ProvisionedSpaceGB  <span class="sy0">|</span> <span class="kw2">sort</span> Name <span class="sy0">|</span> <span class="kw1">Export-Csv</span> F:\Scripts\Output\datastores<span class="sy0">-</span>acceptance.csv</pre>
+
+</div>
+
+<h2 class="sectionedit13" id="get_all_datastores_for_all_clusters_and_see_usage">Get All Datastores for All Clusters and See Usage</h2>
+<div class="level2">
+<pre class="code powershell"><span class="kw3">ForEach</span> <span class="br0">&#40;</span><span class="re0">$cluster</span> <span class="kw3">in</span> get<span class="sy0">-</span>cluster<span class="br0">&#41;</span><span class="br0">&#123;</span>get<span class="sy0">-</span>cluster <span class="st0">&quot;$cluster&quot;</span> <span class="sy0">|</span> Get<span class="sy0">-</span>VMHost <span class="sy0">|</span> <span class="kw2">select</span> <span class="kw5">-first</span> <span class="nu0">1</span> <span class="sy0">|</span> get<span class="sy0">-</span>datastore <span class="sy0">|</span> <span class="kw3">where</span> <span class="br0">&#123;</span><a target="_blank" href="about:blank"><span class="kw6">$_</span></a>.name <span class="kw4">-like</span> <span class="st0">&quot;?_*&quot;</span><span class="br0">&#125#125;</span> <span class="sy0">|</span> <span class="kw2">Select</span> Name<span class="sy0">,</span>FreeSpaceMB<span class="sy0">,</span>CapacityMB<span class="sy0">,@</span><span class="br0">&#123;</span>N<span class="sy0">=</span><span class="st0">&quot;Number of VMs&quot;</span>;E<span class="sy0">=</span><span class="br0">&#123;</span><span class="sy0">@</span><span class="br0">&#40;</span><a target="_blank" href="about:blank"><span class="kw6">$_</span></a> <span class="sy0">|</span> Get<span class="sy0">-</span>VM<span class="br0">&#41;</span>.Count<span class="br0">&#125;</span><span class="br0">&#125;</span><span class="sy0">,@</span><span class="br0">&#123;</span>N<span class="sy0">=</span><span class="st0">&quot;VMs&quot;</span>;E<span class="sy0">=</span><span class="br0">&#123;</span><span class="sy0">@</span><span class="br0">&#40;</span><a target="_blank" href="about:blank"><span class="kw6">$_</span></a> <span class="sy0">|</span> Get<span class="sy0">-</span>VM <span class="sy0">|</span> <span class="kw1">ForEach-Object</span> <span class="br0">&#123;</span><a target="_blank" href="about:blank"><span class="kw6">$_</span></a>.Name<span class="br0">&#125;</span><span class="br0">&#41;</span><span class="br0">&#125;</span><span class="br0">&#125;</span><span class="sy0">,@</span><span class="br0">&#123;</span>N<span class="sy0">=</span><span class="st0">&quot;VM Size&quot;</span>;E<span class="sy0">=</span><span class="br0">&#123;</span><span class="sy0">@</span><span class="br0">&#40;</span><a target="_blank" href="about:blank"><span class="kw6">$_</span></a> <span class="sy0">|</span> Get<span class="sy0">-</span>VM <span class="sy0">|</span> <span class="kw1">ForEach-Object</span> <span class="br0">&#123;</span><a target="_blank" href="about:blank"><span class="kw6">$_</span></a>.UsedSpaceGB<span class="br0">&#125;</span><span class="br0">&#41;</span><span class="br0">&#125;</span><span class="br0">&#125;</span> <span class="sy0">|</span> <span class="kw1">Export-Csv</span> D:\sjoerd\datastore<span class="sy0">-</span><span class="re0">$cluster</span><span class="sy0">-</span>overview.csv<span class="br0">&#125;</span></pre>
+
+</div>
+
+<h2 class="sectionedit14" id="get_number_of_paths_in_use_per_host_within_cluster">Get Number of Paths in Use per Host within Cluster</h2>
+<div class="level2">
+<pre class="code powershell">Get<span class="sy0">-</span>Cluster <span class="st0">&quot;Acceptance&quot;</span> <span class="sy0">|</span> Get<span class="sy0">-</span>VMHost <span class="sy0">|</span> <span class="kw3">where</span> <span class="br0">&#123;</span><a target="_blank" href="about:blank"><span class="kw6">$_</span></a>.State <span class="kw4">-eq</span> <span class="st0">&quot;Connected&quot;</span><span class="br0">&#125;</span> <span class="sy0">|</span> <span class="kw2">Select</span> Name<span class="sy0">,</span> <span class="sy0">@</span><span class="br0">&#123;</span>N<span class="sy0">=</span><span class="st0">&quot;TotalPaths&quot;</span>;E<span class="sy0">=</span><span class="br0">&#123;</span><span class="br0">&#40;</span><a target="_blank" href="about:blank"><span class="kw6">$_</span></a> <span class="sy0">|</span> Get<span class="sy0">-</span>ScsiLun <span class="sy0">|</span> Get<span class="sy0">-</span>ScsiLunPath <span class="sy0">|</span> <span class="kw1">Measure-Object</span><span class="br0">&#41;</span>.Count<span class="br0">&#125;</span><span class="br0">&#125;</span></pre>
+
+</div>
+
+<h2 class="sectionedit15" id="scan_storage_for_all_hosts_within_cluster">Scan Storage for all Hosts within Cluster</h2>
+<div class="level2">
+<pre class="code powershell"><span class="kw3">ForEach</span> <span class="br0">&#40;</span><span class="re0">$esxhost</span> <span class="kw3">in</span> <span class="br0">&#40;</span>Get<span class="sy0">-</span>Cluster <span class="st0">&quot;Acceptance&quot;</span> <span class="sy0">|</span> Get<span class="sy0">-</span>VMHost<span class="br0">&#41;</span><span class="br0">&#41;</span> <span class="br0">&#123;</span>Get<span class="sy0">-</span>VmHostStorage <span class="re0">$esxhost</span> <span class="sy0">-</span>RescanAllHba<span class="br0">&#125;</span></pre>
+
+</div>
+
+<h2 class="sectionedit16" id="set_mpio_settings_for_all_hosts_in_cluster">Set MPIO Settings for All Hosts in Cluster</h2>
+<div class="level2">
+<pre class="code powershell"><span class="kw3">ForEach</span> <span class="br0">&#40;</span><span class="re0">$esxhost</span> <span class="kw3">in</span> <span class="br0">&#40;</span>Get<span class="sy0">-</span>Cluster <span class="st0">&quot;Acceptance&quot;</span> <span class="sy0">|</span> Get<span class="sy0">-</span>VMHost<span class="br0">&#41;</span><span class="br0">&#41;</span> <span class="br0">&#123;</span>D:\tools\plink <span class="sy0">-</span>ssh <span class="re0">$esxhost</span> <span class="sy0">-</span>l root <span class="sy0">-</span>pw <span class="sy0">&lt;</span>fillinpw<span class="sy0">&gt;</span> <span class="sy0">/</span>opt<span class="sy0">/</span>ontap<span class="sy0">/</span>santools<span class="sy0">/</span>config_mpath <span class="sy0">--</span>primary <span class="sy0">--</span>loadbalance <span class="sy0">--</span>policy fixed<span class="br0">&#125;</span></pre>
+
+</div>
+
+<h2 class="sectionedit17" id="count_the_number_of_vms_in_a_cluster_that_match_a_name_pattern">Count the Number of VMs in a Cluster That Match a Name Pattern</h2>
+<div class="level2">
+<pre class="code powershell">get<span class="sy0">-</span>cluster <span class="st0">&quot;acceptance&quot;</span> <span class="sy0">|</span> get<span class="sy0">-</span>vm <span class="sy0">|</span> <span class="kw3">where</span> <span class="br0">&#123;</span><a target="_blank" href="about:blank"><span class="kw6">$_</span></a>.name <span class="kw4">-match</span> <span class="st0">&quot;prd&quot;</span><span class="br0">&#125;</span> <span class="sy0">|</span> <span class="kw1">measure-object</span></pre>
+
+</div>
+
+<h2 class="sectionedit18" id="get_all_dead_paths_in_a_datacenter">Get all Dead Paths In a Datacenter</h2>
+<div class="level2">
+<pre class="code powershell"><span class="kw3">ForEach</span> <span class="br0">&#40;</span><span class="re0">$vmhost</span> <span class="kw3">in</span> <span class="br0">&#40;</span>Get<span class="sy0">-</span>Datacenter <span class="st0">&quot;The Netherlands&quot;</span> <span class="sy0">|</span> Get<span class="sy0">-</span>Vmhost <span class="sy0">|</span> <span class="kw2">Sort</span><span class="br0">&#41;</span><span class="br0">&#41;</span><span class="br0">&#123;</span> <span class="re0">$deadpaths</span> <span class="sy0">=</span> Get<span class="sy0">-</span>ScsiLun <span class="sy0">-</span>vmhost <span class="re0">$vmhost</span> <span class="sy0">|</span> Get<span class="sy0">-</span>ScsiLunPath <span class="sy0">|</span> <span class="kw3">where</span> <span class="br0">&#123;</span><a target="_blank" href="about:blank"><span class="kw6">$_</span></a>.State <span class="kw4">-eq</span> <span class="st0">&quot;Dead&quot;</span><span class="br0">&#125;</span> <span class="sy0">|</span> <span class="kw2">Select</span> ScsiLun<span class="sy0">,</span>State; <span class="kw1">Write-Host</span> <span class="re0">$vmhost</span> <span class="re0">$deadpaths</span><span class="br0">&#125;</span></pre>
+
+</div>
+
+<h2 class="sectionedit19" id="get_all_lun_ids_in_use_on_an_esx_server">Get All LUN IDs in use on an ESX Server</h2>
+<div class="level2">
+<pre class="code powershell">Get<span class="sy0">-</span>ScsiLun <span class="sy0">-</span>vmhost esx01 <span class="sy0">-</span>luntype disk <span class="sy0">|</span> <span class="kw2">select</span> runtimename <span class="sy0">|</span> <span class="kw2">sort</span> runtimename</pre>
+
+</div>
+
+<h2 class="sectionedit20" id="get_all_lun_ids_in_use_on_a_netapp_filer">Get All LUN IDs in use on a NetApp Filer</h2>
+<div class="level2">
+<pre class="code powershell">Get<span class="sy0">-</span>NaLun <span class="sy0">|</span> get<span class="sy0">-</span>nalunmap <span class="sy0">|</span> <span class="kw2">select</span> Path<span class="sy0">,</span>LunId <span class="sy0">|</span> <span class="kw2">Sort</span> LunId</pre>
+
+</div>
+
+<h2 class="sectionedit21" id="get_all_volumes_from_netapp_filer">Get All Volumes From NetApp Filer</h2>
+<div class="level2">
+
+<p>
+This will get you all Volumes from a NetApp Filer that start with a capital R and an underscore, separated by a comma, and copied to the clipboard. I needed this to get all volumes that are part of replication: 
+</p>
+<pre class="code powershell">import<span class="sy0">-</span>module D:\sjoerd\dataontap
+connect<span class="sy0">-</span>nacontroller filer01 <span class="kw5">-credential</span> <span class="br0">&#40;</span><span class="kw1">Get-credential</span><span class="br0">&#41;</span>
+<span class="br0">&#40;</span>Get<span class="sy0">-</span>NaVol <span class="sy0">|</span> <span class="kw3">where</span> <span class="br0">&#123;</span><a target="_blank" href="about:blank"><span class="kw6">$_</span></a>.name <span class="kw4">-like</span> <span class="st0">&quot;R_*&quot;</span><span class="br0">&#125;</span> <span class="sy0">|</span> <span class="kw2">select</span> name <span class="kw5">-expandproperty</span> Name<span class="br0">&#41;</span> <span class="sy0">-</span>join <span class="st0">','</span> <span class="sy0">|</span> clip</pre>
+
+</div>
+
+<h2 class="sectionedit22" id="working_with_credentials">Working with Credentials</h2>
+<div class="level2">
+
+<p>
+If you need to submit credentials for connecting to something you can do this to get a prompt for entering the credentials in stead of having to put them on the commandline: 
+</p>
+<pre class="code powershell">Connect<span class="sy0">-</span>NaController filer01 <span class="kw5">-Credential</span> <span class="br0">&#40;</span><span class="kw1">Get-Credential</span><span class="br0">&#41;</span></pre>
+
+</div>
+
+<h2 class="sectionedit23" id="get_the_number_of_vms_on_all_datastores_in_a_datacenter">Get the Number of VMs on all Datastores in a Datacenter</h2>
+<div class="level2">
+<pre class="code powershell">Get<span class="sy0">-</span>Datastore <span class="sy0">|</span> <span class="kw3">where</span> <span class="br0">&#123;</span><a target="_blank" href="about:blank"><span class="kw6">$_</span></a>.datacenter <span class="kw4">-match</span> <span class="st0">&quot;The Netherlands&quot;</span><span class="br0">&#125;</span> <span class="sy0">|</span> <span class="kw2">Select</span> Name<span class="sy0">,</span> <span class="sy0">@</span><span class="br0">&#123;</span>N<span class="sy0">=</span><span class="st0">&quot;Number of VMs&quot;</span>;E<span class="sy0">=</span><span class="br0">&#123;</span><span class="sy0">@</span><span class="br0">&#40;</span><a target="_blank" href="about:blank"><span class="kw6">$_</span></a> <span class="sy0">|</span> Get<span class="sy0">-</span>VM<span class="br0">&#41;</span>.Count<span class="br0">&#125;</span><span class="br0">&#125;</span> <span class="sy0">|</span> <span class="kw2">Sort</span> <span class="st0">&quot;Number of VMs&quot;</span></pre>
+
+</div>
+
+<h2 class="sectionedit24" id="get_all_vms_with_old_hardware_level_version">Get All VMs with Old Hardware Level Version</h2>
+<div class="level2">
+<pre class="code powershell">Get<span class="sy0">-</span>Cluster <span class="st0">&quot;Acceptance&quot;</span> <span class="sy0">|</span> Get<span class="sy0">-</span>VM <span class="sy0">|</span> Get<span class="sy0">-</span>View <span class="sy0">|</span> <span class="kw3">Where</span> <span class="br0">&#123;</span><a target="_blank" href="about:blank"><span class="kw6">$_</span></a>.Config.Version <span class="kw4">-ne</span> <span class="st0">&quot;vmx-09&quot;</span><span class="br0">&#125;</span> <span class="sy0">|</span> <span class="kw2">Select</span> Name <span class="sy0">|</span> <span class="kw2">Sort</span> Name</pre>
+
+</div>
+
+<h2 class="sectionedit25" id="set_vm_description_with_csv_file">Set VM Description with CSV File</h2>
+<div class="level2">
+<blockquote><div class="no">
+ Note: This command will overwrite the existing descriptions, so make sure you do not overwrite anything important.</div></blockquote>
+
+<p>
+You need to create a simple csv file which looks like this:
+</p>
+<pre class="code">VMName,Description
+server01,Domain Controller
+server02,Database Server</pre>
+
+<p>
+The second step is to run this command: 
+</p>
+<pre class="code powershell"><span class="kw1">Import-Csv</span> <span class="st0">&quot;D:\sjoerd\description.csv&quot;</span> <span class="sy0">|</span> <span class="sy0">%</span> <span class="br0">&#123;</span> Set<span class="sy0">-</span>VM <a target="_blank" href="about:blank"><span class="kw6">$_</span></a>.VMName <span class="kw5">-Description</span> <a target="_blank" href="about:blank"><span class="kw6">$_</span></a>.Description <span class="kw5">-Confirm</span>:<span class="re0">$false</span><span class="br0">&#125;</span></pre>
+
+<p>
+That&#039;s all! 
+</p>
+
+</div>
+
+<h1 class="sectionedit26" id="scripts">Scripts</h1>
+<div class="level1">
+
+<p>
+Save the code on your management workstation in a simple textfile, and change the extention to “.ps1”. Now you can run them from powershell like any executable.
+</p>
+
+</div>
+
+<h2 class="sectionedit27" id="resource_pools_with_ballooning_and_swapping">Resource Pools with Ballooning and Swapping</h2>
+<div class="level2">
+<pre class="code powershell"><span class="re0">$myCol</span> <span class="sy0">=</span> <span class="sy0">@</span><span class="br0">&#40;</span><span class="br0">&#41;</span>
+<span class="kw3">foreach</span><span class="br0">&#40;</span><span class="re0">$clus</span> <span class="kw3">in</span> <span class="br0">&#40;</span>Get<span class="sy0">-</span>Cluster<span class="br0">&#41;</span><span class="br0">&#41;</span><span class="br0">&#123;</span>
+ <span class="kw3">foreach</span><span class="br0">&#40;</span><span class="re0">$rp</span> <span class="kw3">in</span> <span class="br0">&#40;</span>Get<span class="sy0">-</span>ResourcePool <span class="sy0">-</span>Location <span class="re0">$clus</span> <span class="sy0">|</span> Get<span class="sy0">-</span>View <span class="sy0">|</span> <span class="kw1">Where-Object</span> `
+  <span class="br0">&#123;</span><a target="_blank" href="about:blank"><span class="kw6">$_</span></a>.Name <span class="kw4">-ne</span> <span class="st0">&quot;Resources&quot;</span> <span class="kw4">-and</span> `
+   <a target="_blank" href="about:blank"><span class="kw6">$_</span></a>.Summary.QuickStats.BalloonedMemory <span class="kw4">-ne</span> <span class="st0">&quot;0&quot;</span><span class="br0">&#125;</span><span class="br0">&#41;</span><span class="br0">&#41;</span><span class="br0">&#123;</span>
+   <span class="re0">$Details</span> <span class="sy0">=</span> <span class="st0">&quot;&quot;</span> <span class="sy0">|</span> <span class="kw1">Select-Object</span> Cluster<span class="sy0">,</span> ResourcePool<span class="sy0">,</span> `
+   SwappedMemory <span class="sy0">,</span>BalloonedMemory
+&nbsp;
+    <span class="re0">$Details</span>.Cluster <span class="sy0">=</span> <span class="re0">$clus</span>.Name
+    <span class="re0">$Details</span>.ResourcePool <span class="sy0">=</span> <span class="re0">$rp</span>.Name
+    <span class="re0">$Details</span>.SwappedMemory <span class="sy0">=</span> <span class="re0">$rp</span>.Summary.QuickStats.SwappedMemory
+    <span class="re0">$Details</span>.BalloonedMemory <span class="sy0">=</span> <span class="re0">$rp</span>.Summary.QuickStats.BalloonedMemory
+&nbsp;
+    <span class="re0">$myCol</span> <span class="sy0">+=</span> <span class="re0">$Details</span>
+  <span class="br0">&#125;</span>
+<span class="br0">&#125;</span>
+$myCol</pre>
+
+</div>
+
+<h2 class="sectionedit28" id="vms_with_ballooning_and_swapping">VMs with Ballooning and Swapping</h2>
+<div class="level2">
+<pre class="code powershell"><span class="re0">$myCol</span> <span class="sy0">=</span> <span class="sy0">@</span><span class="br0">&#40;</span><span class="br0">&#41;</span>
+<span class="kw3">foreach</span><span class="br0">&#40;</span><span class="re0">$vm</span> <span class="kw3">in</span> <span class="br0">&#40;</span>Get<span class="sy0">-</span>View <span class="sy0">-</span>ViewType VirtualMachine <span class="sy0">|</span> <span class="kw1">Where-Object</span> `
+  <span class="br0">&#123;</span><a target="_blank" href="about:blank"><span class="kw6">$_</span></a>.Summary.QuickStats.BalloonedMemory <span class="kw4">-ne</span> <span class="st0">&quot;0&quot;</span><span class="br0">&#125;</span><span class="br0">&#41;</span><span class="br0">&#41;</span><span class="br0">&#123;</span>
+   <span class="re0">$Details</span> <span class="sy0">=</span> <span class="st0">&quot;&quot;</span> <span class="sy0">|</span> <span class="kw1">Select-Object</span> VM<span class="sy0">,</span> `
+   SwappedMemory <span class="sy0">,</span>BalloonedMemory
+&nbsp;
+    <span class="re0">$Details</span>.VM <span class="sy0">=</span> <span class="re0">$vm</span>.Name
+    <span class="re0">$Details</span>.SwappedMemory <span class="sy0">=</span> <span class="re0">$vm</span>.Summary.QuickStats.SwappedMemory
+    <span class="re0">$Details</span>.BalloonedMemory <span class="sy0">=</span> <span class="re0">$vm</span>.Summary.QuickStats.BalloonedMemory
+&nbsp;
+    <span class="re0">$myCol</span> <span class="sy0">+=</span> <span class="re0">$Details</span>
+  <span class="br0">&#125;</span>
+$myCol</pre>
+
+</div>
+
+<h2 class="sectionedit29" id="vms_network_info">VMs Network Info</h2>
+<div class="level2">
+<pre class="code powershell"><span class="br0">&#40;</span>get<span class="sy0">-</span>vm<span class="br0">&#41;</span> <span class="sy0">|</span> <span class="sy0">%</span><span class="br0">&#123;</span>
+  <span class="re0">$vm</span> <span class="sy0">=</span> <a target="_blank" href="about:blank"><span class="kw6">$_</span></a>
+  <span class="kw2">echo</span> <span class="re0">$vm</span>.name<span class="sy0">----</span>
+  <span class="re0">$vm</span>.Guest.Nics <span class="sy0">|</span> <span class="sy0">%</span><span class="br0">&#123;</span>
+    <span class="re0">$vminfo</span> <span class="sy0">=</span> <a target="_blank" href="about:blank"><span class="kw6">$_</span></a>
+    <span class="kw2">echo</span> <span class="re0">$vminfo</span>.NetworkName <span class="re0">$vminfo</span>.IPAddress <span class="re0">$vminfo</span>.MacAddress
+    <span class="kw2">echo</span> <span class="st0">&quot;;<span class="es0">`n</span>&quot;</span>;
+  <span class="br0">&#125;</span>
+<span class="br0">&#125;</span></pre>
+
+</div>
+
+<h2 class="sectionedit30" id="vms_boot_time">VMs Boot Time</h2>
+<div class="level2">
+<pre class="code powershell"><span class="re0">$LastBootProp</span> <span class="sy0">=</span> <span class="sy0">@</span><span class="br0">&#123;</span>
+  Name <span class="sy0">=</span> <span class="st0">'LastBootTime'</span>
+    Expression <span class="sy0">=</span> <span class="br0">&#123;</span>
+      <span class="br0">&#40;</span> <span class="kw1">Get-Date</span> <span class="br0">&#41;</span> <span class="sy0">-</span> <span class="br0">&#40;</span> <span class="kw1">New-TimeSpan</span> <span class="kw5">-Seconds</span> <a target="_blank" href="about:blank"><span class="kw6">$_</span></a>.Summary.QuickStats.UptimeSeconds <span class="br0">&#41;</span>
+	<span class="br0">&#125;</span>
+<span class="br0">&#125;</span>
+&nbsp;
+Get<span class="sy0">-</span>View <span class="sy0">-</span>ViewType VirtualMachine <span class="kw5">-Property</span> Name<span class="sy0">,</span> Summary.QuickStats.UptimeSeconds <span class="sy0">|</span> <span class="kw2">Select</span> Name<span class="sy0">,</span> $LastBootProp</pre>
+
+</div>
+
+<h2 class="sectionedit31" id="reading_values_for_properties_from_csv_file">Reading Values for Properties from CSV file</h2>
+<div class="level2">
+
+<p>
+This little snippet will set the memory reservations for a VM from a csv file. This is useful if you want to rollback a change and you remembered to make a <a href="/wiki/powerclicsvvminfo" class="wikilink1" title="powerclicsvvminfo">csv file with VM information</a>. You can use the list to make a separate vms.txt file as input as well as a vmsinput.txt file with reservation settings: <br/>
+
+vms.txt: 
+</p>
+<pre class="code">WINXP-TESTVM2
+WINXP-TESTVM3
+WINXP-TESTVM4</pre>
+
+<p>
+vmsinput.txt: 
+</p>
+<pre class="code">VMName,MEMReservation
+WINXP-TESTVM2,128
+WINXP-TESTVM3,256
+WINXP-TESTVM4,128</pre>
+<pre class="code powershell"><span class="re0">$sourcevms</span> <span class="sy0">=</span> <span class="st0">&quot;C:\Users\sjoerd\Desktop\powercli scripts\vms.txt&quot;</span>
+<span class="re0">$sourcememory</span> <span class="sy0">=</span> <span class="st0">&quot;C:\Users\sjoerd\Desktop\powercli scripts\vmsinput.txt&quot;</span>
+&nbsp;
+<span class="re0">$list</span> <span class="sy0">=</span> <span class="kw1">Get-Content</span> <span class="re0">$sourcevms</span> <span class="sy0">|</span> <span class="kw1">Foreach-Object</span> <span class="br0">&#123;</span>Get<span class="sy0">-</span>VM <a target="_blank" href="about:blank"><span class="kw6">$_</span></a> <span class="br0">&#125;</span> 
+&nbsp;
+<span class="kw3">foreach</span><span class="br0">&#40;</span><span class="re0">$item</span> <span class="kw3">in</span> <span class="re0">$list</span><span class="br0">&#41;</span><span class="br0">&#123;</span>
+                <span class="re0">$vm</span> <span class="sy0">=</span> <span class="re0">$item</span>.Name
+		<span class="co1"># The line below gives all information in @= format. This is not directly usable. 				</span>
+		<span class="re0">$memres</span> <span class="sy0">=</span> <span class="kw1">import-csv</span> <span class="re0">$sourcememory</span> <span class="sy0">|</span> <span class="kw1">where-object</span> <span class="br0">&#123;</span><a target="_blank" href="about:blank"><span class="kw6">$_</span></a>.vmname <span class="kw4">-eq</span> <span class="st0">&quot;$vm&quot;</span><span class="br0">&#125;</span> 
+		<span class="co1"># With this you get only the value of the property in the variable.</span>
+		<span class="re0">$memresvm</span> <span class="sy0">=</span> <span class="re0">$memres</span>.MEMReservation
+		Get<span class="sy0">-</span>VM <span class="re0">$vm</span> <span class="sy0">|</span> Get<span class="sy0">-</span>VMResourceConfiguration <span class="sy0">|</span> <span class="kw3">where</span> <span class="br0">&#123;</span><a target="_blank" href="about:blank"><span class="kw6">$_</span></a>.MemReservationMB <span class="kw4">-eq</span> <span class="st0">'0'</span><span class="br0">&#125;</span> <span class="sy0">|</span> Set<span class="sy0">-</span>VMResourceConfiguration <span class="sy0">-</span>MemReservationMB <span class="re0">$memresvm</span>
+		<span class="br0">&#125;</span>
+&nbsp;</pre>
+
+</div>
+
+<h1 class="sectionedit32" id="combining_powercli_and_powershell">Combining PowerCLI and Powershell</h1>
+<div class="level1">
+
+<p>
+This snippet queries the windows host machine for the uptime.  
+</p>
+<pre class="code powershell"><span class="re0">$vms</span> <span class="sy0">=</span> get<span class="sy0">-</span>vm <span class="sy0">|</span> <span class="kw3">where</span> <span class="br0">&#123;</span> <span class="br0">&#40;</span><a target="_blank" href="about:blank"><span class="kw6">$_</span></a>.PowerState <span class="kw4">-eq</span> <span class="st0">&quot;PoweredOn&quot;</span><span class="br0">&#41;</span> <span class="br0">&#125;</span> <span class="sy0">|</span> get<span class="sy0">-</span>view <span class="sy0">|</span> <span class="kw3">where</span> <span class="br0">&#123;</span> <span class="br0">&#40;</span><a target="_blank" href="about:blank"><span class="kw6">$_</span></a>.Guest.GuestFamily <span class="kw4">-eq</span> <span class="st0">&quot;windowsGuest&quot;</span><span class="br0">&#41;</span> <span class="br0">&#125;</span> 
+&nbsp;
+<span class="kw3">foreach</span> <span class="br0">&#40;</span><span class="re0">$vm</span> <span class="kw3">in</span> <span class="re0">$vms</span><span class="br0">&#41;</span> <span class="br0">&#123;</span>
+   <span class="re0">$vmname</span> <span class="sy0">=</span> <span class="re0">$vm</span>.name
+   <span class="re0">$hostname</span> <span class="sy0">=</span> <span class="re0">$vm</span>.Guest.HostName
+   <span class="kw1">write-host</span> <span class="st0">&quot;Starting with $vmname with hostname $hostname&quot;</span>
+   <span class="kw1">Get-WmiObject</span> <span class="sy0">-</span>computer <span class="re0">$hostname</span>
+   <span class="re0">$objUptime</span> <span class="sy0">=</span> <span class="br0">&#40;</span><span class="kw1">Get-WmiObject</span> <span class="sy0">-</span>computer <span class="re0">$hostname</span> <span class="kw5">-class</span> Win32_PerfFormattedData_PerfOS_System<span class="br0">&#41;</span>.SystemUpTime
+   <span class="kw1">write-host</span> <span class="st0">&quot;$vmname heeft $objUptime as uptime&quot;</span>
+<span class="br0">&#125;</span></pre>
+
+</div>
+
+<h1 class="sectionedit33" id="resources">Resources</h1>
+<div class="level1">
+
+<p>
+<a href="http://ict-freak.nl/2009/12/18/powercli-find-resourcepool-or-vms-with-memory-ballooningswap-usage/" class="urlextern" target="_blank" title="http://ict-freak.nl/2009/12/18/powercli-find-resourcepool-or-vms-with-memory-ballooningswap-usage/"  rel="nofollow">http://ict-freak.nl/2009/12/18/powercli-find-resourcepool-or-vms-with-memory-ballooningswap-usage/</a> <br/>
+
+<a href="http://philthevirtualizer.com/category/vmware/powercli/" class="urlextern" target="_blank" title="http://philthevirtualizer.com/category/vmware/powercli/"  rel="nofollow">http://philthevirtualizer.com/category/vmware/powercli/</a> <br/>
+
+</p>
+<div class="tags"><span>
+	<a href="/wiki/tag/scripts?do=showtag&amp;tag=scripts" class="wikilink1" title="tag:scripts" rel="tag">scripts</a>,
+	<a href="/wiki/tag/vmware?do=showtag&amp;tag=vmware" class="wikilink1" title="tag:vmware" rel="tag">vmware</a>,
+	<a href="/wiki/tag/notes?do=showtag&amp;tag=notes" class="wikilink1" title="tag:notes" rel="tag">notes</a>
+</span></div>
+
+</div>
+            <div class="comment_form">
+                You could leave a comment if you were logged in.            </div>
+            
+                    <!-- wikipage stop -->
+                                    </div>
+
+                <div class="docInfo"><bdi>powerclinotes.txt</bdi> · Last modified: 2015/04/29 08:51 by <bdi>sjoerd</bdi></div>
+
+                            </div></div><!-- /content -->
+
+            <hr class="a11y" />
+
+            <!-- PAGE ACTIONS -->
+            <div id="dokuwiki__pagetools">
+                <h3 class="a11y">Page Tools</h3>
+                <div class="tools">
+                    <ul>
+                        <li><a href="/wiki/powerclinotes?do=edit"  class="action source" accesskey="v" rel="nofollow" title="Show pagesource [V]"><span>Show pagesource</span></a></li><li><a href="/wiki/powerclinotes?do=revisions"  class="action revs" accesskey="o" rel="nofollow" title="Old revisions [O]"><span>Old revisions</span></a></li><li><a href="/wiki/powerclinotes?do=backlink"  class="action backlink" rel="nofollow" title="Backlinks"><span>Backlinks</span></a></li><li><a href="#dokuwiki__top"  class="action top" accesskey="t" rel="nofollow" title="Back to top [T]"><span>Back to top</span></a></li>                    </ul>
+                </div>
+            </div>
+        </div><!-- /wrapper -->
+
+        
+<!-- ********** FOOTER ********** -->
+<div id="dokuwiki__footer"><div class="pad">
+    <div class="license">Except where otherwise noted, content on this wiki is licensed under the following license: <bdi><a href="http://www.getshifting.com/wiki/license" rel="license" class="urlextern" target="_blank">GNU Free Documentation License</a></bdi></div>
+    <div class="buttons">
+                <a href="http://www.dokuwiki.org/donate" title="Donate" target="_blank"><img
+            src="/wiki/lib/tpl/dokuwiki/images/button-donate.gif" width="80" height="15" alt="Donate" /></a>
+        <a href="http://www.php.net" title="Powered by PHP" target="_blank"><img
+            src="/wiki/lib/tpl/dokuwiki/images/button-php.gif" width="80" height="15" alt="Powered by PHP" /></a>
+        <a href="http://validator.w3.org/check/referer" title="Valid HTML5" target="_blank"><img
+            src="/wiki/lib/tpl/dokuwiki/images/button-html5.png" width="80" height="15" alt="Valid HTML5" /></a>
+        <a href="http://jigsaw.w3.org/css-validator/check/referer?profile=css3" title="Valid CSS" target="_blank"><img
+            src="/wiki/lib/tpl/dokuwiki/images/button-css.png" width="80" height="15" alt="Valid CSS" /></a>
+        <a href="http://dokuwiki.org/" title="Driven by DokuWiki" target="_blank"><img
+            src="/wiki/lib/tpl/dokuwiki/images/button-dw.png" width="80" height="15" alt="Driven by DokuWiki" /></a>
+    </div>
+</div></div><!-- /footer -->
+
+    </div></div><!-- /site -->
+
+    <div class="no"><img src="/wiki/lib/exe/indexer.php?id=powerclinotes&amp;1468431776" width="2" height="1" alt="" /></div>
+    <div id="screen__mode" class="no"></div>    <!--[if lte IE 8 ]></div><![endif]-->
+</body>
+</html>
