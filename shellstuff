@@ -1,0 +1,14 @@
+case "$1" in
+  (runApp1) 
+    runApp1
+    exit 1
+    ;;
+  (runApp)
+    runApp
+    exit 0
+    ;;
+  (*)
+    echo "Usage: $0 {runApp1|runApp}"
+    exit 2
+    ;;
+esac
