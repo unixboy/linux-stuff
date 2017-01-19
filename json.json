@@ -1,0 +1,15 @@
+Given x.json:
+
+{
+  "URL": "https://foo:bar@example.com/",
+  "OTHER": "foo \" bar 'baz'"
+}
+This produces:
+
+$ ./jsonenv <x.json 
+URL=https://foo:bar@example.com/ export URL;
+OTHER='foo " bar '"'"'baz'"'"'' export OTHER;
+You can use it with the heroku api like this:
+
+$ eval "$(curl -sn https://api.heroku.com/apps/myapp/config_vars|jsonenv)"
+to use the config vars from myapp in your local shell.
