@@ -13,3 +13,21 @@ You can use it with the heroku api like this:
 
 $ eval "$(curl -sn https://api.heroku.com/apps/myapp/config_vars|jsonenv)"
 to use the config vars from myapp in your local shell.
+
+
+
+
+
+#!/usr/bin/env python
+
+# jsonenv reads a json object as input and produces
+# escaped shell commands for setting environment vars
+
+import json
+import pipes
+import sys
+
+for k, v in json.load(sys.stdin).items():
+    k = pipes.quote(k)
+    v = pipes.quote(v)
+    print "%s=%s export %s;" % (k, v, k)
