@@ -1,0 +1,5 @@
+
+JENKINS_WORKDIR="/var/lib/jenkins"
+JENKINS_USER="jenkins"
+JENKINS_URL="http://your.build.server/"
+JENKINS_NODENAME="YOUR OWN NODENAME (e.g. ralph-buildnode)"
