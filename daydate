@@ -1,0 +1,88 @@
+#!/bin/bash
+
+START=`echo $1 | tr -d _`;
+
+for (( c=0; c<$2; c++ ))
+do
+    echo -n "`date --date="$START +$c day" +%Y_%m_%d` ";
+done
+
+
+
+
+
+
+
+
+#!/bin/bash 
+start_date=20100501
+num_days=5
+for i in `seq 1 $num_days`
+do 
+    date=date +%Y/%m/%d -d "${start_date}-${i} days"
+    echo $date # Use this however you want!
+done
+
+#!/bin/bash
+
+DATE=$1
+num=$2
+awk -vd="$DATE" -vn="$num" 'BEGIN{
+   m=split(d,D,"_")
+   t=mktime(D[1]" "D[2]" "D[3]" 00 00 00")
+   print d
+   for(i=1;i<=n;i++){
+      t+=86400
+      print strftime("%Y_%m_%d",t)
+   }
+}'
+
+
+
+
+
+ 
+Getting the Day Name:
+
+DAYOFWEEK=$(date +"%a")
+echo DAYOFWEEK: $DAYOFWEEK
+if ["$DAYOFWEEK" == "Thu"]; 
+then   
+   echo YES
+else
+    echo NO
+fi
+Getting the Day Num:
+
+DAYOFWEEK=$(date +"%u")
+echo DAYOFWEEK: $DAYOFWEEK
+
+if ["$DAYOFWEEK" == 4]; 
+then
+   echo YES
+else
+   echo NO
+fi
+
+
+
+
+
+The problem is the missing blank.
+
+The following code will work:
+
+if [ "$DAYOFWEEK" == 4 ];  then    echo YES; else    echo NO; fi
+But keep in mind (see help test):
+
+== is not officially mentioned, you should use = for string compare
+-eq is intended for arithmetic tests
+I would prefer:
+
+ if [ "${DAYOFWEEK}" -eq 4 ];  then    echo YES; else    echo NO; fi
+Generally you should prefer the day number approach, because it has less dependency to the current locale. On my system the output of date +"%a" is today Do.
+
+
+
+
+
