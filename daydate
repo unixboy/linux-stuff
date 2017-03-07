@@ -84,5 +84,15 @@ Generally you should prefer the day number approach, because it has less depende
 
 
 
+#!/bin/bash
+DAYOFWEEK=$(date +"%u")
+echo DAYOFWEEK: $DAYOFWEEK
+
+if [ "$DAYOFWEEK" == 3 ];
+then
+   echo YES
+else
+   echo NO
+fi
 
 
