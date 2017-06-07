@@ -1,0 +1,249 @@
+Looping statements are used to force a program to repeatedly execute a statement. The executed statement is called the loop body.
+
+Loops execute until the value of a controlling expression is 0. The controlling expression may be any scalar data type.
+
+The shell language also provide several iteration or looping statements. In this article let us review the looping statements which bash provides using some examples.
+
+Bash supports following three types of looping statement
+
+For loop
+While loop
+Until loop
+This article is part of the on-going Bash Tutorial series.
+
+Loops can be nested. Like any other programming language, bash also supports break statement to exit the current loop, and continue statement to resume the next iteration of the loop statement.
+
+Bash For Loop – First Method
+
+For loops are typically used when the number of iterations is known before entering the bash loop. Bash supports two kinds of for loop. The first form of bash for loop is:
+
+for varname in list
+	do
+		commands ##Body of the loop
+	done
+In the above syntax:
+
+
+ 
+for, in, do and done are keywords
+List is any list which has list of items
+varname is any Bash variable name.
+In this form, the for statement executes the command enclosed in a body, once for each item in the list. The current item from the list will be stored in a variable “varname” each time through the loop. This varname can be processed in the body of the loop. This list can be a variable that contains several words separated by spaces. If list is missing in the for statement, then it takes the positional parameter that were passed into the shell.
+
+Bash For Loop Example 1. Unzip all the Zip file
+
+The following example finds the list of files which matches with “*.zip*” in the root directory, and creates a new directory in the same location where the zip file exists, and unzip the zip file content.
+
+# cat zip_unzip.sh
+#! /bin/bash
+# Find files which has .zip
+for file in `find /root -name "*.zip*" -type f`
+do
+
+# Skip the extension .zip
+dirname=`echo ${file} | awk -F'.' '{print $1}'`
+
+# Create the directory
+mkdir $dirname
+
+# Copy the zip file
+cp ${file} ${dirname}
+cd $dirname
+
+# Unzip the zip file from newly created directory
+unzip ${dirname}/$(echo ${file##/*/})
+done
+In this example find command returns the list of files, from which each file will be processed through a loop.
+For each item, it creates the directory with the name of the zip file, and copies the zip file to the newly created directory and unzip the zip file from there.
+The echo statement, echo ${file##/*/} gives you only the file name not the path.
+# ./zip_unzip.sh
+Archive:  /root/test2/test2.zip
+ extracting: t1/p
+ extracting: t1/q
+ extracting: t1/r
+ extracting: t1/s
+ extracting: t1/t
+ extracting: t1/u
+ extracting: t1/v
+Archive:  /root/test1/test1.zip
+ extracting: t/a
+ extracting: t/b
+ extracting: t/c
+ extracting: t/d
+ extracting: t/e
+Similar to the Bash loop, Awk also provides for loop and while loop as we discussed in our Awk While and For Loop article.
+
+Bash For Loop – Second Method
+
+The second form of for loop is similar to the for loop in ‘C’ programming language, which has three expression (initialization, condition and updation).
+
+for (( expr1; expr2; expr3 ))
+         do
+		commands
+         done
+In the above bash for command syntax, before the first iteration, expr1 is evaluated. This is usually used to initialize variables for the loop.
+All the statements between do and done is executed repeatedly until the value of expr2 is TRUE.
+After each iteration of the loop, expr3 is evaluated. This is usually use to increment a loop counter.
+The following example generates the n number of random numbers.
+
+Bash For Example 2. Generate n random numbers
+
+$ cat random.sh
+#! /bin/bash
+
+echo -e "How many random numbers you want to generate"
+read max
+
+for (( start = 1; start <= $max; start++ ))
+do
+        echo -e $RANDOM
+done
+
+$ ./random.sh
+How many random numbers you want to generate
+5
+6119
+27200
+1998
+12097
+9181
+In the above code snippet, the for loop generates the random number at max number of times. RANDOM is an internal bash function that returns a random integer at each invocation.
+
+Bash While Loop
+
+Another iteration statement offered by the shell programming language is the while statement.
+
+Syntax:
+while expression
+do
+	commands
+done
+In the above while loop syntax:
+
+while, do, done are keywords
+Expression is any expression which returns a scalar value
+While statement causes a block of code to be executed while a provided conditional expression is true.
+Bash While Example 3. Write contents into a file
+
+The following example reads the data from the stdout and writes into a file.
+
+$ cat writefile.sh
+#! /bin/bash
+
+echo -e "Enter absolute path of the file name you want to create"
+read file
+while read line
+do
+echo $line >> $file
+done
+
+$ sh writefile.sh
+Enter absolute path of the file name you want to create
+/tmp/a
+while
+for
+until
+
+$ cat /tmp/a
+while
+for
+until
+The above example, reads the filename from the user, and reads the lines of data from stdin and appends each line to a given filename. When EOF enters, read will fail, so the loop ends there.
+
+If you are writing lot of bash scripts, you can use Vim editor as a Bash IDE using the Vim bash-support plugin as we discussed earlier.
+
+Bash While Example 4. Read the contents of a file
+
+In the previous example, it reads the data from stdout and write it into a file. In this example, it reads the file
+content and write it into a stdout.
+
+$ cat read.sh
+#! /bin/bash
+echo -e "Enter absolute path of the file name you want to read"
+read file
+exec <$file # redirects stdin to a file
+while read line
+do
+echo $line
+done
+
+$ ./read.sh
+
+Enter absolute path of the file name you want to read
+/tmp/a
+while
+for
+until
+In this example, it gets the filename to read, and using exec it redirects stdin to a file. From that point on, all stdin comes from that file, rather than from keyboard. read command reads the line from stdin, so while loop reads the stdin, till EOF occurs.
+
+Bash Until Loop
+
+The until statement is very similar in syntax and function to the while statement. The only real difference between the two is that the until statement executes its code block while its conditional expression is false, and the while statement executes its code block while its conditional expression is true.
+
+syntax:
+
+until expression
+	do
+	   commands #body of the loop
+	done
+In the above bash until syntax:
+where until, do, done are keywords
+expression any conditional expression
+
+Bash Until Example 5. Monitor the logfile
+
+This example monitors the size of the logfile, once the logfile size reaches 2000bytes, it takes the copy of that logfile.
+
+$ cat monitor.sh
+
+file=/tmp/logfile
+until [ $(ls -l $file | awk '{print $5}') -gt 2000 ]
+        do
+            echo "Sleeping for next 5 seconds"
+            sleep 5
+        done
+date=`date +%s`
+cp $file "$file-"$date.bak
+
+$ ./monitor.sh
+Sleeping for next 5 seconds
+Sleeping for next 5 seconds
+
+$ ls -l /tmp/logfile*
+-rw-r--r-- 1 sss sss      2010 Jun 24 12:29 logfile
+-rw-r--r-- 1 sss sss      2005 Jun 24 16:09 logfile-1277474574.bak
+The until statement continues to execute the body of the loop, till the condition becomes true. In this example condition is size of the file greater than 2000 bytes, so it copies the file once it reaches the 2000 bytes.
+
+Also, make sure to refer to our earlier Bash Array examples.
+
+Bash Until Example 6. Waiting for the Machine to come up
+
+This example is used to wait till the machine comes up before doing a ssh to that machine. The until loop statement ends only when the ping gives the responses.
+
+$ cat mac_wait.sh
+#! /bin/bash
+
+read -p "Enter IP Address:" ipadd
+echo $ipadd
+until ping -c 1 $ipadd
+do
+        sleep 60;
+done
+ssh $ipadd
+
+$./mac_wait.sh
+Enter IP Address:192.143.2.10
+PING 192.143.2.10 (192.143.2.10) 56(84) bytes of data.
+
+--- 192.143.2.10 ping statistics ---
+1 packets transmitted, 0 received, 100% packet loss, time 0ms
+
+PING 192.143.2.10 (192.143.2.10) 56(84) bytes of data.
+64 bytes from 192.143.2.10: icmp_seq=1 ttl=64 time=0.059 ms
+
+--- 192.143.2.10 ping statistics ---
+1 packets transmitted, 1 received, 0% packet loss, time 0ms
+rtt min/avg/max/mdev = 0.059/0.059/0.059/0.000 ms
+The authenticity of host '192.143.2.10 (192.143.2.10)' can't be established.
+Are you sure you want to continue connecting (yes/no)? yes
+Until loop is quite useful at the command line, as a way of waiting for certain events to occur.
