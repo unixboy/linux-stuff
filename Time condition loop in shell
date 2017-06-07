@@ -1,0 +1,110 @@
+The best way to do this is using the $SECONDS variable,
+which has a count of the time that the script (or shell) has been running for. The below sample shows how to run a while loop for 3 seconds.
+
+#! /bin/bash
+end=$((SECONDS+3))
+
+while [ $SECONDS -lt $end ]; do
+    # Do what you want.
+    :
+done
+
+
+Loosely speaking, $SECONDS contains the number of seconds elapsed so far in a script.
+
+In bash and zsh you get integral seconds advancing by the pulse of the system (real-time) clock - i.e., counting behind the scenes does not truly start at 0(!), but at whatever fraction since the last full time-of-day second the script happened to be started at or the SECONDS variable was reset.
+
+By contrast, ksh operates as one would expect: counting truly starts at 0 when you reset $SECONDS; furthermore, $SECONDS reports fractional seconds in ksh.
+
+Therefore, the only shell in which this solution works reasonably predictably and precisely is ksh. That said, for rough measurements and timeouts it may still be usable in bash and zsh.
+
+Note: The following uses a bash shebang line; simply substituting ksh or zsh for bash will make the script run with these shells, too.
+
+#!/usr/bin/env bash
+
+secs=3600   # Set interval (duration) in seconds.
+
+SECONDS=0   # Reset $SECONDS; counting of seconds will (re)start from 0(-ish).
+while (( SECONDS < secs )); do    # Loop until interval has elapsed.
+  # ...
+done
+
+
+Solution for POSIX-features-only shells, such as sh (dash) on Ubuntu ($SECONDS is not POSIX-compliant)
+
+Cleaned-up version of @dcpomero's answer.
+
+Uses epoch time returned by date +%s (seconds elapsed since 1 January 1970) and POSIX syntax for the conditional.
+
+Caveat: date +%s itself (specifically, the %s format) is not POSIX-compliant, but it'll work on (at least) Linux, FreeBSD, and OSX.
+
+#!/bin/sh
+
+secs=3600                         # Set interval (duration) in seconds.
+endTime=$(( $(date +%s) + secs )) # Calculate end time.
+
+while [ $(date +%s) -lt $endTime ]; do  # Loop until interval has elapsed.
+    # ...
+done
+
+
+
+You can explore the -d option of date.
+
+Below is a shell script snippet to exemplify. It is similar to other answers, but may be more useful in different scenarios.
+
+# set -e to exit if the time provided by argument 1 is not valid for date.
+# The variable stop_date will store the seconds since 1970-01-01 00:00:00
+# UTC, according to the date specified by -d "$1".
+set -e
+stop_date=$(date -d "$1" "+%s")
+set +e
+
+echo -e "Starting at $(date)"
+echo -e "Finishing at $(date -d "$1")"
+
+# Repeat the loop while the current date is less than stop_date
+while [ $(date "+%s") -lt ${stop_date} ]; do
+
+    # your commands that will run until stop_date
+
+done
+You can then call the script in the many different ways date understands:
+
+$ ./the_script.sh "1 hour 4 minutes 3 seconds"
+Starting at Fri Jun  2 10:50:28 BRT 2017
+Finishing at Fri Jun  2 11:54:31 BRT 2017
+
+$ ./the_script.sh "tomorrow 8:00am"
+Starting at Fri Jun  2 10:50:39 BRT 2017
+Finishing at Sat Jun  3 08:00:00 BRT 2017
+
+$ ./the_script.sh "monday 8:00am"
+Starting at Fri Jun  2 10:51:25 BRT 2017
+Finishing at Mon Jun  5 08:00:00 BRT 2017
+
+
+
+
+date +%s will give you the seconds since the epoch, so something like
+
+startTime = `date +%s`
+timeSpan = #some number of seconds
+endTime = timeSpan + startTime
+
+while (( `date +%s` < endTime )) ; do
+    #code
+done
+
+
+
+
+
+
+
+
+
+
+
+
+
