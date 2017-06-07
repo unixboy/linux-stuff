@@ -1,0 +1,82 @@
+ for i in {1..5}; do date; done
+ 
+ for ((n=0;n<5;n++))
+do
+ command1
+ command2
+done
+
+#!/usr/bin/perl
+for $i (1 .. 5) {
+   system("date");
+}
+
+
+
+#!/usr/bin/python
+# Run unix date command 3 times 
+import os;
+for x in range(0,3):
+    os.system("date")
+
+
+Create an integer variable
+
+
+
+To create an integer variable use the declare command as follows:
+declare -i y=10
+echo $y
+Create a shell script called intmath.sh:
+#!/bin/bash
+# set x,y and z to an integer data type
+declare -i x=10
+declare -i y=10
+declare -i z=0
+z=$(( x + y ))
+echo "$x + $y = $z"
+
+# try setting to character 'a'
+x=a
+z=$(( x + y ))
+echo "$x + $y = $z"
+Save and close the file. Run it as follows:
+chmod +x intmath.sh
+./intmath.sh
+Sample outputs:
+10 + 10 = 20
+0 + 10 = 10
+
+
+You can use a simpler syntax in Bash than some of the others shown here:
+
+#!/bin/bash
+read -p "Enter a number " number    # read can output the prompt for you.
+if (( $number % 5 == 0 ))           # no need for brackets
+then
+    echo "Your number is divisible by 5"
+else
+    echo "Your number is not divisible by 5"
+fi
+
+No bc needed as long as it's integer math (you'll need bc for floating point though): In bash, the (( )) operator works like expr.
+
+As others have pointed out the operation you want is modulo (%).
+
+#!/bin/bash  
+
+echo "Enter a number"
+read number
+
+if [ $(( $number % 5 )) -eq 0 ] ; then
+   echo "Your number is divisible by 5"
+else
+   echo "Your number is not divisible by 5"
+fi
+
+
+
+
+
+
+
