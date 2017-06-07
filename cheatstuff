@@ -1,0 +1,4 @@
+./search.sh 20 2>&1 > search.out &
+tail -f search.log  | grep TotalCount | cut -f1 -d\[ |more
+ 
+ 
